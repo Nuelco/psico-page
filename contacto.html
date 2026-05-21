@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contacto — Seila Zarzoso, Psicóloga General Sanitaria</title>
+  <meta name="description" content="Contacta con Seila Zarzoso para pedir tu primera cita. Respuesta en menos de 24 horas. Consulta presencial y online disponibles." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <img src="assets/logo.png" alt="Seila Zarzoso Psicología" class="nav__logo-img" />
+      </a>
+      <ul class="nav__links">
+        <li><a href="sobre-mi.html" class="nav__link">Sobre mí</a></li>
+        <li><a href="servicios.html" class="nav__link">Servicios</a></li>
+        <li><a href="modalidades.html" class="nav__link">Modalidades</a></li>
+        <li><a href="contacto.html" class="nav__link">Contacto</a></li>
+      </ul>
+      <a href="contacto.html" class="btn btn--primary nav__cta">Pedir cita</a>
+      <button class="nav__burger" id="navBurger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav__mobile" id="navMobile">
+      <a href="sobre-mi.html" class="nav__mobile-link">Sobre mí</a>
+      <a href="servicios.html" class="nav__mobile-link">Servicios</a>
+      <a href="modalidades.html" class="nav__mobile-link">Modalidades</a>
+      <a href="contacto.html" class="nav__mobile-link">Contacto</a>
+      <a href="contacto.html" class="btn btn--primary nav__mobile-cta">Pedir cita</a>
+    </div>
+  </nav>
+
+  <!-- CONTACTO -->
+  <section class="contact page-top" id="contacto">
+    <div class="contact__inner">
+      <div class="contact__info reveal-left">
+        <p class="section__eyebrow">Contacto</p>
+        <h1 class="contact__title">Da el primer paso</h1>
+        <p class="contact__text">
+          Dar el primer paso puede ser lo más difícil. Estoy aquí para facilitar ese proceso. Escríbeme y te responderé en menos de 24 horas.
+        </p>
+        <div class="contact__details">
+          <div class="contact__detail">
+            <div class="contact__detail-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <span class="contact__detail-label">Email</span>
+              <span class="contact__detail-value">hola@seilazarzoso.com</span>
+            </div>
+          </div>
+          <div class="contact__detail">
+            <div class="contact__detail-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div>
+              <span class="contact__detail-label">Teléfono</span>
+              <span class="contact__detail-value">+34 600 000 000</span>
+            </div>
+          </div>
+          <div class="contact__detail">
+            <div class="contact__detail-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <span class="contact__detail-label">Horario de respuesta</span>
+              <span class="contact__detail-value">Lunes a viernes, 9h–20h</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <form class="contact__form reveal-right" id="contactForm" novalidate>
+        <div class="form__row">
+          <div class="form__field">
+            <label class="form__label" for="nombre">Nombre *</label>
+            <input class="form__input" type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="email">Email *</label>
+            <input class="form__input" type="email" id="email" name="email" placeholder="tu@email.com" required />
+          </div>
+        </div>
+        <div class="form__field">
+          <label class="form__label" for="servicio">¿Qué tipo de terapia te interesa?</label>
+          <select class="form__select" id="servicio" name="servicio">
+            <option value="">Selecciona una opción</option>
+            <option value="individual">Terapia individual</option>
+            <option value="pareja">Terapia de pareja</option>
+            <option value="familia">Terapia familiar</option>
+            <option value="emdr">Terapia EMDR</option>
+            <option value="no-se">No lo tengo claro aún</option>
+          </select>
+        </div>
+        <div class="form__field">
+          <label class="form__label" for="modalidad">Modalidad preferida</label>
+          <div class="form__radio-group">
+            <label class="form__radio">
+              <input type="radio" name="modalidad" value="presencial" />
+              <span>Presencial</span>
+            </label>
+            <label class="form__radio">
+              <input type="radio" name="modalidad" value="online" />
+              <span>Online</span>
+            </label>
+            <label class="form__radio">
+              <input type="radio" name="modalidad" value="cualquiera" />
+              <span>Me da igual</span>
+            </label>
+          </div>
+        </div>
+        <div class="form__field">
+          <label class="form__label" for="mensaje">Cuéntame brevemente qué te trae *</label>
+          <textarea class="form__textarea" id="mensaje" name="mensaje" placeholder="Puedes escribir lo que consideres oportuno. Toda la información es confidencial." rows="4" required></textarea>
+        </div>
+        <div class="form__field form__field--checkbox">
+          <label class="form__checkbox">
+            <input type="checkbox" name="privacidad" required />
+            <span>He leído y acepto la <a href="#" class="form__link">política de privacidad</a></span>
+          </label>
+        </div>
+        <button type="submit" class="btn btn--primary btn--lg btn--full">
+          <span>Enviar mensaje</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+        <div class="form__success" id="formSuccess">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+          <p>¡Mensaje enviado! Te responderé en menos de 24 horas.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__name">Seila Zarzoso</span>
+        <span class="footer__tagline">Psicóloga General Sanitaria · Terapeuta EMDR</span>
+        <p class="footer__desc">Un espacio seguro para el cambio y el crecimiento personal.</p>
+      </div>
+      <div class="footer__nav">
+        <h4 class="footer__nav-title">Navegación</h4>
+        <ul class="footer__nav-list">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="sobre-mi.html">Sobre mí</a></li>
+          <li><a href="servicios.html">Servicios</a></li>
+          <li><a href="modalidades.html">Modalidades</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer__nav">
+        <h4 class="footer__nav-title">Servicios</h4>
+        <ul class="footer__nav-list">
+          <li><a href="servicios.html">Terapia individual</a></li>
+          <li><a href="servicios.html">Terapia de pareja</a></li>
+          <li><a href="servicios.html">Terapia familiar</a></li>
+          <li><a href="servicios.html">Terapia EMDR</a></li>
+        </ul>
+      </div>
+      <div class="footer__contact">
+        <h4 class="footer__nav-title">Contacto</h4>
+        <p>hola@seilazarzoso.com</p>
+        <p>+34 600 000 000</p>
+        <a href="contacto.html" class="btn btn--primary footer__cta">Pedir cita</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>© 2026 Seila Zarzoso. Todos los derechos reservados.</p>
+      <div class="footer__legal">
+        <a href="#">Política de privacidad</a>
+        <a href="#">Aviso legal</a>
+        <a href="#">Cookies</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
