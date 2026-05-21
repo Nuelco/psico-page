@@ -61,15 +61,23 @@
   targets.forEach(el => observer.observe(el));
 })();
 
-/* ---- ACTIVE NAV LINK based on current page ---- */
+/* ---- ACTIVE NAV LINK on scroll ---- */
 (function initActiveNav() {
-  const page = window.location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('.nav__link').forEach(link => {
-    const href = link.getAttribute('href');
-    if (href === page || (page === '' && href === 'index.html')) {
-      link.classList.add('active');
-    }
-  });
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks  = document.querySelectorAll('.nav__link');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+        });
+      }
+    });
+  }, { threshold: 0.4 });
+
+  sections.forEach(s => observer.observe(s));
 })();
 
 /* ---- CONTACT FORM ---- */
