@@ -1,0 +1,4 @@
+assets/remove_bg.py
+*.py
+.DS_Store
+Thumbs.db
