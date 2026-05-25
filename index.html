@@ -501,6 +501,16 @@
           <label class="form__label" for="mensaje">Cuéntame brevemente qué te trae *</label>
           <textarea class="form__textarea" id="mensaje" name="mensaje" placeholder="Puedes escribir lo que consideres oportuno. Toda la información es confidencial." rows="4" required></textarea>
         </div>
+        <!-- Honeypot: los bots lo rellenan, los humanos no lo ven -->
+        <div class="form__honeypot" aria-hidden="true">
+          <label for="website">Sitio web</label>
+          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+        </div>
+        <div class="form__field form__captcha">
+          <label class="form__label" for="captcha">Verificación: ¿Cuánto es <strong id="captchaQuestion"></strong>? *</label>
+          <input class="form__input form__input--captcha" type="number" id="captcha" name="captcha" placeholder="Tu respuesta" autocomplete="off" />
+          <span class="form__captcha-hint" id="captchaHint"></span>
+        </div>
         <div class="form__field form__field--checkbox">
           <label class="form__checkbox">
             <input type="checkbox" name="privacidad" required />

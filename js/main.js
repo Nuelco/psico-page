@@ -86,15 +86,31 @@
   const success = document.getElementById('formSuccess');
   if (!form) return;
 
+  /* generate math captcha */
+  let captchaAnswer = 0;
+  function newCaptcha() {
+    const a = Math.floor(Math.random() * 9) + 1;
+    const b = Math.floor(Math.random() * 9) + 1;
+    captchaAnswer = a + b;
+    document.getElementById('captchaQuestion').textContent = `${a} + ${b}`;
+    form.querySelector('#captcha').value = '';
+  }
+  newCaptcha();
+
   form.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    const nombre   = form.querySelector('#nombre');
-    const email    = form.querySelector('#email');
-    const mensaje  = form.querySelector('#mensaje');
+    const nombre     = form.querySelector('#nombre');
+    const email      = form.querySelector('#email');
+    const mensaje    = form.querySelector('#mensaje');
     const privacidad = form.querySelector('[name="privacidad"]');
+    const honeypot   = form.querySelector('[name="website"]');
+    const captcha    = form.querySelector('#captcha');
+    const captchaHint = document.getElementById('captchaHint');
 
-    /* basic validation */
+    /* honeypot: bots fill this, humans don't */
+    if (honeypot && honeypot.value) return;
+
     let valid = true;
 
     [nombre, email, mensaje].forEach(field => {
@@ -108,8 +124,19 @@
       valid = false;
     }
 
-    if (!privacidad.checked) {
+    if (!privacidad.checked) valid = false;
+
+    /* captcha validation */
+    const captchaVal = parseInt(captcha.value, 10);
+    if (!captcha.value || captchaVal !== captchaAnswer) {
+      captcha.style.borderColor = '#e87070';
+      captchaHint.textContent = 'Respuesta incorrecta. Inténtalo de nuevo.';
+      newCaptcha();
+      captcha.value = '';
       valid = false;
+    } else {
+      captcha.style.borderColor = '';
+      captchaHint.textContent = '';
     }
 
     if (!valid) return;
@@ -121,6 +148,7 @@
 
     setTimeout(() => {
       form.reset();
+      newCaptcha();
       submitBtn.disabled = false;
       submitBtn.querySelector('span').textContent = 'Enviar mensaje';
       success.classList.add('visible');
@@ -129,10 +157,11 @@
     }, 1200);
   });
 
-  /* clear error color on input */
+  /* clear error styles on input */
   form.querySelectorAll('input, textarea').forEach(field => {
     field.addEventListener('input', () => {
       field.style.borderColor = '';
+      if (field.id === 'captcha') document.getElementById('captchaHint').textContent = '';
     });
   });
 })();

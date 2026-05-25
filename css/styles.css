@@ -1046,6 +1046,25 @@ input, textarea, select { font-family: inherit; }
 .form__success.visible { display: flex; }
 .form__success svg { flex-shrink: 0; color: var(--clr-primary-dk); }
 
+/* Honeypot — oculto para humanos, visible para bots */
+.form__honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Captcha matemático */
+.form__captcha .form__input--captcha { max-width: 140px; }
+.form__captcha-hint {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.8rem;
+  color: #e87070;
+  min-height: 1rem;
+}
+
 /* ---- FOOTER ---- */
 .footer {
   background: var(--clr-text);
