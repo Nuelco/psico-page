@@ -220,3 +220,49 @@ document.head.appendChild(style);
     section.insertBefore(scene, section.firstChild);
   });
 })();
+
+/* ---- WHATSAPP WIDGET ---- */
+(function initWhatsApp() {
+  const btn     = document.getElementById('waBtn');
+  const chat    = document.getElementById('waChat');
+  const closeBtn= document.getElementById('waChatClose');
+  const typing  = document.getElementById('waTyping');
+  const msg     = document.getElementById('waMsg');
+  const dot     = document.getElementById('waBtnDot');
+  if (!btn) return;
+
+  let open = false;
+  let shown = false;
+
+  function openChat() {
+    open = true;
+    chat.classList.add('open');
+    chat.removeAttribute('aria-hidden');
+    btn.setAttribute('aria-expanded', 'true');
+    if (dot) dot.style.display = 'none';
+
+    if (!shown) {
+      typing.style.display = 'flex';
+      msg.classList.remove('visible');
+      setTimeout(() => {
+        typing.style.display = 'none';
+        msg.classList.add('visible');
+        shown = true;
+      }, 1600);
+    }
+  }
+
+  function closeChat() {
+    open = false;
+    chat.classList.remove('open');
+    chat.setAttribute('aria-hidden', 'true');
+    btn.setAttribute('aria-expanded', 'false');
+  }
+
+  btn.addEventListener('click', () => open ? closeChat() : openChat());
+  closeBtn.addEventListener('click', closeChat);
+
+  document.addEventListener('click', (e) => {
+    if (open && !document.getElementById('waWidget').contains(e.target)) closeChat();
+  });
+})();

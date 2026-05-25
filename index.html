@@ -545,6 +545,52 @@
     </div>
   </footer>
 
+  <!-- WHATSAPP WIDGET -->
+  <div class="wa-widget" id="waWidget">
+
+    <div class="wa-chat" id="waChat" aria-hidden="true" role="dialog" aria-label="Chat de WhatsApp">
+      <div class="wa-chat__head">
+        <img src="assets/foto-profesional-nueva.jpg" alt="Seila Zarzoso" class="wa-chat__avatar" />
+        <div class="wa-chat__meta">
+          <p class="wa-chat__name">Seila Zarzoso</p>
+          <p class="wa-chat__status">
+            <span class="wa-chat__status-dot"></span>
+            Normalmente responde en minutos
+          </p>
+        </div>
+        <button class="wa-chat__close" id="waChatClose" aria-label="Cerrar chat">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+
+      <div class="wa-chat__body">
+        <div class="wa-chat__day">Hoy</div>
+        <div class="wa-chat__bubble">
+          <div class="wa-chat__typing" id="waTyping" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </div>
+          <div class="wa-chat__msg" id="waMsg">
+            <p>¡Hola! 👋 Soy <strong>Seila</strong>.</p>
+            <p>¿Tienes alguna pregunta o quieres reservar una primera cita? Escríbeme, suelo responder enseguida 😊</p>
+            <span class="wa-chat__msg-time">ahora</span>
+          </div>
+        </div>
+      </div>
+
+      <a href="https://wa.me/34600000000" target="_blank" rel="noopener" class="wa-chat__cta">
+        <svg viewBox="0 0 32 32" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M16 0C7.163 0 0 7.163 0 16c0 2.822.736 5.47 2.027 7.77L0 32l8.437-2.01A15.94 15.94 0 0 0 16 32c8.837 0 16-7.163 16-16S24.837 0 16 0Zm8.265 22.557c-.344.968-1.703 1.772-2.8 2.005-.746.158-1.72.285-5.001-1.075-4.197-1.726-6.9-5.988-7.108-6.267-.2-.278-1.683-2.24-1.683-4.27s1.056-3.033 1.453-3.453c.344-.363.755-.454 1.007-.454.251 0 .503.002.723.013.232.012.543-.088.85.647.32.762 1.088 2.63 1.183 2.82.096.19.16.412.032.663-.128.251-.192.408-.383.629-.19.22-.4.492-.572.66-.19.19-.388.397-.167.778.222.38.986 1.623 2.117 2.63 1.454 1.295 2.68 1.696 3.061 1.887.38.19.601.159.822-.096.222-.254.951-1.111 1.205-1.492.252-.38.503-.317.85-.19.346.127 2.2 1.038 2.578 1.228.38.19.633.286.726.444.095.16.095.922-.249 1.892Z"/></svg>
+        Iniciar conversación en WhatsApp
+      </a>
+    </div>
+
+    <button class="wa-btn" id="waBtn" aria-label="Abrir chat de WhatsApp" aria-expanded="false">
+      <svg class="wa-btn__ico wa-btn__ico--wa" viewBox="0 0 32 32" width="26" height="26" fill="currentColor" aria-hidden="true"><path d="M16 0C7.163 0 0 7.163 0 16c0 2.822.736 5.47 2.027 7.77L0 32l8.437-2.01A15.94 15.94 0 0 0 16 32c8.837 0 16-7.163 16-16S24.837 0 16 0Zm8.265 22.557c-.344.968-1.703 1.772-2.8 2.005-.746.158-1.72.285-5.001-1.075-4.197-1.726-6.9-5.988-7.108-6.267-.2-.278-1.683-2.24-1.683-4.27s1.056-3.033 1.453-3.453c.344-.363.755-.454 1.007-.454.251 0 .503.002.723.013.232.012.543-.088.85.647.32.762 1.088 2.63 1.183 2.82.096.19.16.412.032.663-.128.251-.192.408-.383.629-.19.22-.4.492-.572.66-.19.19-.388.397-.167.778.222.38.986 1.623 2.117 2.63 1.454 1.295 2.68 1.696 3.061 1.887.38.19.601.159.822-.096.222-.254.951-1.111 1.205-1.492.252-.38.503-.317.85-.19.346.127 2.2 1.038 2.578 1.228.38.19.633.286.726.444.095.16.095.922-.249 1.892Z"/></svg>
+      <svg class="wa-btn__ico wa-btn__ico--x" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      <span class="wa-btn__dot" id="waBtnDot"></span>
+    </button>
+
+  </div>
+
   <script src="js/main.js"></script>
 </body>
 </html>
