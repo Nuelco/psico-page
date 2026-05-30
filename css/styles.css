@@ -854,18 +854,26 @@ input, textarea, select { font-family: inherit; }
 }
 
 /* ---- CONTACT ---- */
-.contact {
+/* ---- UBICACIÓN ---- */
+.location {
   padding: 7rem 2rem;
-  background: var(--clr-primary-llt);
+  background: var(--clr-surface);
 }
-.contact__location {
+.location__inner {
   max-width: var(--max-w);
-  margin: 0 auto 2.5rem;
-  text-align: center;
+  margin: 0 auto;
 }
-.contact__location .contact__title { margin-bottom: 0.75rem; }
-.contact__location .contact__text  { margin-bottom: 1rem; max-width: 52ch; margin-left: auto; margin-right: auto; }
-.contact__address {
+.location__header {
+  margin-bottom: 2.5rem;
+}
+.location__text {
+  font-size: 1rem;
+  color: var(--clr-text-muted);
+  line-height: 1.75;
+  max-width: 52ch;
+  margin-bottom: 1rem;
+}
+.location__address {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -873,20 +881,24 @@ input, textarea, select { font-family: inherit; }
   font-weight: 500;
   color: var(--clr-primary-ddk);
 }
-.contact__map {
-  max-width: var(--max-w);
-  margin: 0 auto 4rem;
+.location__map {
   border-radius: var(--radius-xl);
   overflow: hidden;
   box-shadow: var(--shadow-lg);
   border: 1px solid var(--clr-border);
   height: 340px;
 }
-.contact__map iframe {
+.location__map iframe {
   width: 100%;
   height: 100%;
   border: none;
   display: block;
+}
+
+/* ---- CONTACTO ---- */
+.contact {
+  padding: 7rem 2rem;
+  background: var(--clr-bg);
 }
 .contact__inner {
   max-width: var(--max-w);
@@ -1082,8 +1094,8 @@ input, textarea, select { font-family: inherit; }
 
 .footer__logo {
   display: block;
-  width: 100px;
-  height: 100px;
+  width: 140px;
+  height: 140px;
   object-fit: contain;
   margin-bottom: 1.1rem;
 }
@@ -1209,7 +1221,7 @@ input, textarea, select { font-family: inherit; }
 
   .modalities__grid { grid-template-columns: 1fr; }
 
-  .contact__map { height: 240px; margin-bottom: 3rem; }
+  .location__map { height: 240px; }
   .contact__inner { grid-template-columns: 1fr; gap: 3rem; }
   .contact__text { max-width: none; }
 
