@@ -186,44 +186,48 @@ document.head.appendChild(style);
 /* ---- ZEN BUTTERFLIES ---- */
 (function initButterflies() {
   const svgBody = `
-    <path d="M50 40 Q30 8 8 20 Q0 35 15 46 Q30 58 50 40Z" opacity="0.85"/>
-    <path d="M50 40 Q38 54 22 70 Q32 78 44 67 Q54 57 50 40Z" opacity="0.65"/>
-    <path d="M50 40 Q70 8 92 20 Q100 35 85 46 Q70 58 50 40Z" opacity="0.85"/>
-    <path d="M50 40 Q62 54 78 70 Q68 78 56 67 Q46 57 50 40Z" opacity="0.65"/>
-    <ellipse cx="50" cy="40" rx="3" ry="22" opacity="0.9"/>
-    <circle cx="50" cy="19" r="4.5" opacity="0.9"/>
-    <path d="M47 16 Q42 9 36 4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-    <circle cx="35" cy="3" r="2.5"/>
-    <path d="M53 16 Q58 9 64 4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-    <circle cx="65" cy="3" r="2.5"/>`;
+    <path d="M50 45 C45 30 25 10 8 18 C0 30 8 48 28 50 C42 52 50 45 50 45Z"
+          fill="currentColor" opacity="0.82"/>
+    <path d="M50 48 C44 58 28 74 18 69 C10 64 14 52 28 50 C40 48 50 48 50 48Z"
+          fill="currentColor" opacity="0.64"/>
+    <path d="M50 45 C55 30 75 10 92 18 C100 30 92 48 72 50 C58 52 50 45 50 45Z"
+          fill="currentColor" opacity="0.82"/>
+    <path d="M50 48 C56 58 72 74 82 69 C90 64 86 52 72 50 C60 48 50 48 50 48Z"
+          fill="currentColor" opacity="0.64"/>
+    <ellipse cx="50" cy="46" rx="2.8" ry="16" fill="currentColor" opacity="0.9"/>
+    <circle cx="50" cy="28" r="3.5" fill="currentColor" opacity="0.9"/>
+    <path d="M48 25 Q42 15 35 9" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <circle cx="34" cy="8" r="2.5" fill="currentColor"/>
+    <path d="M52 25 Q58 15 65 9" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <circle cx="66" cy="8" r="2.5" fill="currentColor"/>`;
 
   const mkSvg = () =>
-    `<svg viewBox="0 0 100 80" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="butterfly__svg" aria-hidden="true">${svgBody}</svg>`;
+    `<svg viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg" class="butterfly__svg" aria-hidden="true">${svgBody}</svg>`;
 
   const configs = [
     {
       sel: '.hero',
       list: [
-        { x:7,  y:25, sz:42, d:23, dl:0,   op:0.48, fl:0.70, c:'var(--clr-primary)'    },
-        { x:80, y:15, sz:28, d:19, dl:3,   op:0.36, fl:0.52, c:'var(--clr-primary-lt)' },
-        { x:12, y:68, sz:50, d:27, dl:1,   op:0.32, fl:0.80, c:'var(--clr-primary)'    },
-        { x:72, y:70, sz:32, d:21, dl:6,   op:0.30, fl:0.62, c:'var(--clr-primary-lt)' },
-        { x:47, y:6,  sz:22, d:16, dl:9,   op:0.26, fl:0.45, c:'var(--clr-primary-dk)' },
+        { x:7,  y:25, sz:42, d:23, dl:0,   op:0.65, fl:0.70, c:'var(--clr-primary)'    },
+        { x:80, y:15, sz:28, d:19, dl:3,   op:0.52, fl:0.52, c:'var(--clr-primary-lt)' },
+        { x:12, y:68, sz:50, d:27, dl:1,   op:0.50, fl:0.80, c:'var(--clr-primary)'    },
+        { x:72, y:70, sz:32, d:21, dl:6,   op:0.48, fl:0.62, c:'var(--clr-primary-lt)' },
+        { x:47, y:6,  sz:22, d:16, dl:9,   op:0.42, fl:0.45, c:'var(--clr-primary-dk)' },
       ]
     },
     {
       sel: '.about',
       list: [
-        { x:2,  y:30, sz:36, d:25, dl:2,   op:0.38, fl:0.70, c:'var(--clr-primary)'    },
-        { x:90, y:58, sz:44, d:20, dl:4.5, op:0.36, fl:0.75, c:'var(--clr-primary-lt)' },
-        { x:88, y:10, sz:26, d:18, dl:7,   op:0.26, fl:0.55, c:'var(--clr-primary)'    },
+        { x:2,  y:30, sz:36, d:25, dl:2,   op:0.55, fl:0.70, c:'var(--clr-primary)'    },
+        { x:90, y:58, sz:44, d:20, dl:4.5, op:0.52, fl:0.75, c:'var(--clr-primary-lt)' },
+        { x:88, y:10, sz:26, d:18, dl:7,   op:0.42, fl:0.55, c:'var(--clr-primary)'    },
       ]
     },
     {
       sel: '.contact',
       list: [
-        { x:4,  y:44, sz:34, d:24, dl:1.5, op:0.33, fl:0.68, c:'var(--clr-primary)'    },
-        { x:88, y:20, sz:28, d:20, dl:5,   op:0.28, fl:0.58, c:'var(--clr-primary-lt)' },
+        { x:4,  y:44, sz:34, d:24, dl:1.5, op:0.50, fl:0.68, c:'var(--clr-primary)'    },
+        { x:88, y:20, sz:28, d:20, dl:5,   op:0.45, fl:0.58, c:'var(--clr-primary-lt)' },
       ]
     }
   ];

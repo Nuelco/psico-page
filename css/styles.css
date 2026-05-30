@@ -1080,6 +1080,13 @@ input, textarea, select { font-family: inherit; }
   margin-bottom: 4rem;
 }
 
+.footer__logo {
+  display: block;
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 1.1rem;
+}
 .footer__name {
   display: block;
   font-size: 1.1rem;
