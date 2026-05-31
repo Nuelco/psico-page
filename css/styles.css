@@ -1255,6 +1255,89 @@ input, textarea, select { font-family: inherit; }
 /* Primera sección de páginas interiores — compensa el nav fijo */
 .page-top { padding-top: calc(var(--nav-h) + 5rem) !important; }
 
+/* ---- CABECERA PÁGINAS INTERIORES ---- */
+.page-header {
+  padding: calc(var(--nav-h) + 4rem) 2rem 4rem;
+  background: var(--clr-primary-llt);
+  border-bottom: 1px solid var(--clr-border);
+}
+.page-header__inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+.page-header__title {
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--clr-text);
+  margin-bottom: 0.5rem;
+  line-height: 1.1;
+}
+.page-header__subtitle {
+  font-size: 1.05rem;
+  color: var(--clr-text-muted);
+  max-width: 52ch;
+  line-height: 1.7;
+}
+
+/* ---- PÁGINAS LEGALES ---- */
+.legal-page {
+  padding: 5rem 2rem;
+  background: var(--clr-bg);
+}
+.legal-page__inner {
+  max-width: 72ch;
+  margin: 0 auto;
+}
+.legal-page__inner h2 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--clr-text);
+  margin: 2.5rem 0 0.75rem;
+}
+.legal-page__inner p,
+.legal-page__inner li {
+  font-size: 0.95rem;
+  color: var(--clr-text-muted);
+  line-height: 1.8;
+  margin-bottom: 0.5rem;
+}
+.legal-page__inner ul { padding-left: 1.5rem; margin-bottom: 1rem; }
+.legal-page__inner a { color: var(--clr-primary-ddk); text-decoration: underline; }
+.legal-page__update {
+  font-size: 0.82rem;
+  color: var(--clr-text-muted);
+  margin-bottom: 2rem;
+  font-style: italic;
+}
+.legal-page__note {
+  margin-top: 3rem;
+  padding: 1rem 1.25rem;
+  background: #fff8e1;
+  border-left: 3px solid #f59e0b;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem !important;
+  color: #92400e !important;
+}
+.legal-page__table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.88rem;
+}
+.legal-page__table th,
+.legal-page__table td {
+  padding: 0.65rem 0.85rem;
+  border: 1px solid var(--clr-border);
+  text-align: left;
+  color: var(--clr-text-muted);
+}
+.legal-page__table th {
+  background: var(--clr-surface);
+  font-weight: 600;
+  color: var(--clr-text);
+}
+
 /* Círculo enso zen en el hero */
 .hero__zen-circle {
   position: absolute;
