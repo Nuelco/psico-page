@@ -1117,6 +1117,33 @@ input, textarea, select { font-family: inherit; }
 }
 .reviews__widget {
   width: 100%;
+  min-height: 320px;
+  position: relative;
+}
+/* Skeleton mientras carga el widget */
+.reviews__widget::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg,
+    var(--clr-border) 25%,
+    var(--clr-primary-llt) 50%,
+    var(--clr-border) 75%);
+  background-size: 200% 100%;
+  border-radius: var(--radius-lg);
+  animation: skeleton-shimmer 1.6s ease-in-out infinite;
+  opacity: 1;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+/* Oculta el skeleton cuando el widget ya ha cargado */
+.reviews__widget:has(iframe)::before,
+.reviews__widget:has([class*="eapps"])::before {
+  opacity: 0;
+}
+@keyframes skeleton-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }
 .review-card {
   background: var(--clr-surface);
