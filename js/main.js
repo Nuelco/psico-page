@@ -167,6 +167,23 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
+/* ---- FAQ ACORDEÓN ---- */
+document.querySelectorAll('.faq__question').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq__item');
+    const isOpen = item.classList.contains('open');
+    // cierra todos los del mismo grupo
+    item.closest('.faq__group').querySelectorAll('.faq__item').forEach(i => {
+      i.classList.remove('open');
+      i.querySelector('.faq__question').setAttribute('aria-expanded', 'false');
+    });
+    if (!isOpen) {
+      item.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  });
+});
+
 /* ---- ACTIVE NAV LINK styling ---- */
 const style = document.createElement('style');
 style.textContent = `.nav__link.active { color: var(--clr-primary-ddk); background: var(--clr-primary-llt); }`;
