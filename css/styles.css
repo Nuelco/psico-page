@@ -508,11 +508,17 @@ input, textarea, select { font-family: inherit; }
 }
 
 .about__text {
-  font-size: 1.02rem;
+  font-size: 1rem;
   color: var(--clr-text-muted);
   line-height: 1.8;
   margin-bottom: 1rem;
   max-width: 58ch;
+}
+.about__text--lead {
+  font-size: 1.08rem;
+  font-weight: 600;
+  color: var(--clr-text);
+  line-height: 1.6;
 }
 
 .about__stats {
@@ -1584,6 +1590,110 @@ input, textarea, select { font-family: inherit; }
 
 /* Primera sección de páginas interiores — compensa el nav fijo */
 .page-top { padding-top: calc(var(--nav-h) + 5rem) !important; }
+
+/* ---- MI ENFOQUE (sobre-mi.html, mobile-first) ---- */
+.approach {
+  padding: 3.5rem 1.25rem;
+  background: var(--clr-bg);
+}
+.approach__inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+.approach__header { margin-bottom: 2rem; }
+
+.approach__intro {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin-bottom: 2.5rem;
+  max-width: 72ch;
+}
+.approach__intro p {
+  font-size: 1rem;
+  color: var(--clr-text-muted);
+  line-height: 1.8;
+}
+
+.approach__cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  margin-bottom: 2.5rem;
+}
+.approach__card {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  transition: box-shadow 0.2s var(--ease-out), transform 0.2s var(--ease-out);
+}
+.approach__card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.approach__card-icon {
+  width: 46px;
+  height: 46px;
+  background: var(--clr-primary-llt);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--clr-primary-ddk);
+  flex-shrink: 0;
+}
+.approach__card-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--clr-text);
+  letter-spacing: -0.02em;
+}
+.approach__card-text {
+  font-size: 0.95rem;
+  color: var(--clr-text-muted);
+  line-height: 1.75;
+}
+
+.approach__belief {
+  margin: 0;
+  padding: 1.75rem 1.75rem 1.75rem 2rem;
+  background: var(--clr-primary-llt);
+  border-left: 3px solid var(--clr-primary-dk);
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+}
+.approach__belief p {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.08rem;
+  line-height: 1.8;
+  color: var(--clr-text);
+}
+
+@media (min-width: 768px) {
+  .approach {
+    padding: 6rem 2rem;
+  }
+  .approach__header { margin-bottom: 3rem; }
+  .approach__intro { margin-bottom: 3.5rem; }
+  .approach__cards {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 3.5rem;
+  }
+  .approach__card { padding: 2rem; }
+  .approach__belief {
+    padding: 2.25rem 3rem 2.25rem 2.75rem;
+  }
+  .approach__belief p { font-size: 1.2rem; }
+}
+
+@media (min-width: 1024px) {
+  .approach { padding: 7rem 2rem; }
+}
 
 /* ---- FORMACIÓN (sobre-mi.html) ---- */
 .training {
