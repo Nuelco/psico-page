@@ -395,18 +395,23 @@ input, textarea, select { font-family: inherit; }
   50% { transform: translateX(-50%) translateY(6px); }
 }
 
-/* ---- ABOUT ---- */
+/* ---- ABOUT (mobile-first) ---- */
 .about {
-  padding: 7rem 2rem;
+  padding: 3.5rem 1.25rem;
   background: var(--clr-surface);
 }
 .about__inner {
   max-width: var(--max-w);
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 5fr 7fr;
-  gap: 6rem;
-  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.about__image-col {
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
 }
 
 .about__image-wrap { position: relative; }
@@ -414,21 +419,63 @@ input, textarea, select { font-family: inherit; }
   width: 100%;
   aspect-ratio: 3/4;
   object-fit: contain;
-  object-position: center center;
+  object-position: center top;
   display: block;
   border-radius: var(--radius-xl);
 }
 
 .about__credential-card {
-  position: absolute;
-  bottom: -2rem;
-  right: -2rem;
+  position: static;
+  margin-top: 1.25rem;
   background: var(--clr-surface);
   border-radius: var(--radius-lg);
   padding: 1.25rem 1.5rem;
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-md);
   border: 1px solid var(--clr-border);
-  min-width: 220px;
+}
+
+@media (min-width: 768px) {
+  .about {
+    padding: 5rem 2rem;
+  }
+  .about__inner {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .about__image-col {
+    max-width: none;
+    margin: 0;
+  }
+  .about__image-wrap {
+    padding-bottom: 3.5rem;
+    padding-right: 2.5rem;
+  }
+  .about__credential-card {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-top: 0;
+    min-width: 200px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .about {
+    padding: 7rem 2rem;
+  }
+  .about__inner {
+    grid-template-columns: 5fr 7fr;
+    gap: 6rem;
+  }
+  .about__image-wrap {
+    padding-bottom: 4rem;
+    padding-right: 3rem;
+  }
+  .about__credential-card {
+    min-width: 220px;
+  }
 }
 .about__credential-label {
   font-size: 0.7rem;
@@ -470,11 +517,19 @@ input, textarea, select { font-family: inherit; }
 
 .about__stats {
   display: flex;
-  gap: 2.5rem;
-  padding: 1.75rem 0;
+  gap: 1.5rem;
+  padding: 1.5rem 0;
   border-top: 1px solid var(--clr-border);
   border-bottom: 1px solid var(--clr-border);
-  margin: 1.75rem 0 2rem;
+  margin: 1.5rem 0 2rem;
+}
+
+@media (min-width: 768px) {
+  .about__stats {
+    gap: 2.5rem;
+    padding: 1.75rem 0;
+    margin: 1.75rem 0 2rem;
+  }
 }
 .about__stat { display: flex; flex-direction: column; gap: 0.2rem; }
 .about__stat-number {
@@ -1488,9 +1543,6 @@ input, textarea, select { font-family: inherit; }
   .hero__visual { justify-content: center; }
   .hero__photo-frame { width: 320px; }
 
-  .about__inner { grid-template-columns: 1fr; gap: 3rem; }
-  .about__credential-card { position: static; margin-top: 1.5rem; }
-
   .services__grid { grid-template-columns: 1fr; }
   .services__grid .service-card:last-child { grid-column: span 1; }
 
@@ -1515,7 +1567,6 @@ input, textarea, select { font-family: inherit; }
   .footer__bottom { flex-direction: column; text-align: center; }
 
   .form__row { grid-template-columns: 1fr; }
-  .about__stats { gap: 1.5rem; }
 }
 
 @media (max-width: 480px) {
@@ -1656,9 +1707,9 @@ input, textarea, select { font-family: inherit; }
   .training__degrees { grid-template-columns: 1fr; }
 }
 
-/* ---- CABECERA PÁGINAS INTERIORES ---- */
+/* ---- CABECERA PÁGINAS INTERIORES (mobile-first) ---- */
 .page-header {
-  padding: calc(var(--nav-h) + 4rem) 2rem 4rem;
+  padding: calc(var(--nav-h) + 2rem) 1.25rem 2.5rem;
   background: var(--clr-primary-llt);
   border-bottom: 1px solid var(--clr-border);
 }
@@ -1667,7 +1718,7 @@ input, textarea, select { font-family: inherit; }
   margin: 0 auto;
 }
 .page-header__title {
-  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 700;
   letter-spacing: -0.03em;
   color: var(--clr-text);
@@ -1675,10 +1726,19 @@ input, textarea, select { font-family: inherit; }
   line-height: 1.1;
 }
 .page-header__subtitle {
-  font-size: 1.05rem;
+  font-size: 1rem;
   color: var(--clr-text-muted);
   max-width: 52ch;
   line-height: 1.7;
+}
+
+@media (min-width: 768px) {
+  .page-header {
+    padding: calc(var(--nav-h) + 4rem) 2rem 4rem;
+  }
+  .page-header__subtitle {
+    font-size: 1.05rem;
+  }
 }
 
 /* ---- PÁGINAS LEGALES ---- */
