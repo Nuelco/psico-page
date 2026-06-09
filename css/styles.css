@@ -448,10 +448,6 @@ input, textarea, select { font-family: inherit; }
     max-width: none;
     margin: 0;
   }
-  .about__image-wrap {
-    padding-bottom: 3.5rem;
-    padding-right: 2.5rem;
-  }
   .about__credential-card {
     position: absolute;
     bottom: 0;
@@ -468,10 +464,6 @@ input, textarea, select { font-family: inherit; }
   .about__inner {
     grid-template-columns: 5fr 7fr;
     gap: 6rem;
-  }
-  .about__image-wrap {
-    padding-bottom: 4rem;
-    padding-right: 3rem;
   }
   .about__credential-card {
     min-width: 220px;
@@ -519,6 +511,21 @@ input, textarea, select { font-family: inherit; }
   font-weight: 600;
   color: var(--clr-text);
   line-height: 1.6;
+}
+
+.about__quote {
+  margin: 1.75rem 0 2rem;
+  padding: 1.5rem 1.75rem;
+  border-left: 3px solid var(--clr-primary-dk);
+  background: var(--clr-primary-llt);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+.about__quote p {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--clr-text);
+  line-height: 1.75;
 }
 
 .about__stats {
@@ -1591,6 +1598,55 @@ input, textarea, select { font-family: inherit; }
 /* Primera sección de páginas interiores — compensa el nav fijo */
 .page-top { padding-top: calc(var(--nav-h) + 5rem) !important; }
 
+/* ---- HISTORIA / ABOUT-STORY (sobre-mi.html, mobile-first) ---- */
+.about-story {
+  padding: 3.5rem 1.25rem;
+  background: var(--clr-bg);
+}
+.about-story__inner {
+  max-width: 68ch;
+  margin: 0 auto;
+}
+.about-story__text {
+  font-size: 1rem;
+  color: var(--clr-text-muted);
+  line-height: 1.85;
+  margin-bottom: 1.5rem;
+}
+.about-story__quote {
+  margin: 2rem 0;
+  padding: 1.5rem 1.75rem;
+  background: var(--clr-surface);
+  border-left: 3px solid var(--clr-primary-dk);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  box-shadow: var(--shadow-sm);
+}
+.about-story__quote p {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--clr-text);
+  line-height: 1.75;
+}
+
+@media (min-width: 768px) {
+  .about-story {
+    padding: 6rem 2rem;
+  }
+  .about-story__quote {
+    padding: 2rem 2.5rem;
+  }
+  .about-story__quote p {
+    font-size: 1.2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .about-story {
+    padding: 7rem 2rem;
+  }
+}
+
 /* ---- MI ENFOQUE (sobre-mi.html, mobile-first) ---- */
 .approach {
   padding: 3.5rem 1.25rem;
@@ -1698,7 +1754,7 @@ input, textarea, select { font-family: inherit; }
 /* ---- FORMACIÓN (sobre-mi.html) ---- */
 .training {
   padding: 7rem 2rem;
-  background: var(--clr-bg);
+  background: var(--clr-surface);
 }
 .training__inner {
   max-width: var(--max-w);
