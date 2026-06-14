@@ -97,7 +97,7 @@
     const captcha    = form.querySelector('#captcha');
     const captchaHint = document.getElementById('captchaHint');
 
-    /* honeypot: bots fill this, humans don't */
+    /* honeypot: bots fill this, humans don't. Esta parte es para evitar envíos automáticos*/
     if (honeypot && honeypot.value) return;
 
     let valid = true;
@@ -258,6 +258,97 @@ document.head.appendChild(style);
 
     section.insertBefore(scene, section.firstChild);
   });
+})();
+
+/* ---- COOKIE CONSENT (RGPD / LSSI / Guía AEPD) ----
+   Bloquea contenido de terceros (Google Maps + reseñas de Google vía Elfsight)
+   hasta que el usuario da su consentimiento. Rechazar es tan fácil como aceptar.
+   El consentimiento se guarda en localStorage (almacenamiento técnico exento). */
+(function initCookieConsent() {
+  const KEY = 'sz-cookie-consent';            // 'accepted' | 'rejected'
+  const get = () => { try { return localStorage.getItem(KEY); } catch (e) { return null; } };
+  const set = (v) => { try { localStorage.setItem(KEY, v); } catch (e) {} };
+
+  /* --- cargar los terceros una vez hay consentimiento --- */
+  function loadThirdParty() {
+    /* iframes diferidos (Google Maps) */
+    document.querySelectorAll('iframe[data-src]').forEach(f => {
+      f.src = f.getAttribute('data-src');
+      f.removeAttribute('data-src');
+    });
+    /* widget de reseñas (Elfsight) */
+    if (document.querySelector('[data-elfsight]') && !document.getElementById('elfsight-platform')) {
+      const s = document.createElement('script');
+      s.src = 'https://elfsightcdn.com/platform.js';
+      s.async = true;
+      s.id = 'elfsight-platform';
+      document.body.appendChild(s);
+    }
+    /* ocultar carteles de "permitir contenido" */
+    document.querySelectorAll('.consent-block').forEach(b => b.classList.add('consent-loaded'));
+  }
+
+  /* --- banner --- */
+  function buildBanner() {
+    const el = document.createElement('div');
+    el.className = 'cookie-banner';
+    el.id = 'cookieBanner';
+    el.setAttribute('role', 'dialog');
+    el.setAttribute('aria-live', 'polite');
+    el.setAttribute('aria-label', 'Aviso de cookies');
+    el.innerHTML = `
+      <div class="cookie-banner__inner">
+        <div class="cookie-banner__text">
+          <p class="cookie-banner__title">Tu privacidad</p>
+          <p>Usamos cookies técnicas propias (necesarias) y, solo con tu permiso, cookies de terceros para mostrar el mapa de Google Maps y las reseñas de Google. Puedes aceptarlas, rechazarlas o leer más en la <a href="cookies.html">política de cookies</a>.</p>
+        </div>
+        <div class="cookie-banner__actions">
+          <button type="button" class="btn cookie-banner__btn cookie-banner__btn--reject" id="cookieReject">Rechazar</button>
+          <button type="button" class="btn btn--primary cookie-banner__btn" id="cookieAccept">Aceptar</button>
+        </div>
+      </div>`;
+    return el;
+  }
+
+  let banner = null;
+  function showBanner() {
+    if (!banner) {
+      banner = buildBanner();
+      document.body.appendChild(banner);
+      banner.querySelector('#cookieAccept').addEventListener('click', accept);
+      banner.querySelector('#cookieReject').addEventListener('click', reject);
+    }
+    requestAnimationFrame(() => banner.classList.add('visible'));
+  }
+  function hideBanner() { if (banner) banner.classList.remove('visible'); }
+
+  /* --- botón flotante para reabrir/cambiar preferencias (retirar consentimiento) --- */
+  function showReopen() {
+    if (document.getElementById('cookieReopen')) return;
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.id = 'cookieReopen';
+    b.className = 'cookie-reopen';
+    b.setAttribute('aria-label', 'Configurar cookies');
+    b.title = 'Configurar cookies';
+    b.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5z"/><circle cx="9" cy="11" r="1"/><circle cx="14" cy="15" r="1"/><circle cx="15" cy="9" r="1"/></svg>`;
+    b.addEventListener('click', showBanner);
+    document.body.appendChild(b);
+  }
+
+  function accept() { set('accepted'); hideBanner(); loadThirdParty(); showReopen(); }
+  function reject() { set('rejected'); hideBanner(); showReopen(); }
+
+  /* botones "Permitir y ver…" dentro de cada bloque bloqueado = otorgar consentimiento */
+  document.querySelectorAll('.consent-ph__btn').forEach(btn => {
+    btn.addEventListener('click', accept);
+  });
+
+  /* estado inicial */
+  const decision = get();
+  if (decision === 'accepted') { loadThirdParty(); showReopen(); }
+  else if (decision === 'rejected') { showReopen(); }
+  else { showBanner(); }
 })();
 
 /* ---- WHATSAPP WIDGET ---- */
