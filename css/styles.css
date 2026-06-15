@@ -1136,6 +1136,22 @@ input, textarea, select { font-family: inherit; }
 .form__success.visible { display: flex; }
 .form__success svg { flex-shrink: 0; color: var(--clr-primary-dk); }
 
+.form__error {
+  display: none;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  padding: 1rem 1.25rem;
+  background: #fbeaea;
+  border: 1px solid #e8a5a5;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #a33;
+}
+.form__error.visible { display: flex; }
+.form__error svg { flex-shrink: 0; color: #d46b6b; }
+
 /* Honeypot — oculto para humanos, visible para bots */
 .form__honeypot {
   position: absolute;

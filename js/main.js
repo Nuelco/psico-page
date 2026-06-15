@@ -73,6 +73,7 @@
 (function initForm() {
   const form    = document.getElementById('contactForm');
   const success = document.getElementById('formSuccess');
+  const error   = document.getElementById('formError');
   if (!form) return;
 
   /* generate math captcha */
@@ -86,7 +87,7 @@
   }
   newCaptcha();
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const nombre     = form.querySelector('#nombre');
@@ -96,6 +97,8 @@
     const honeypot   = form.querySelector('[name="website"]');
     const captcha    = form.querySelector('#captcha');
     const captchaHint = document.getElementById('captchaHint');
+
+    if (error) error.classList.remove('visible');
 
     /* honeypot: bots fill this, humans don't. Esta parte es para evitar envíos automáticos*/
     if (honeypot && honeypot.value) return;
@@ -130,20 +133,41 @@
 
     if (!valid) return;
 
-    /* simulate send */
+    /* envío real al endpoint del formulario (Formspark) vía AJAX */
     const submitBtn = form.querySelector('[type="submit"]');
     submitBtn.disabled = true;
     submitBtn.querySelector('span').textContent = 'Enviando…';
 
-    setTimeout(() => {
+    /* Construimos el cuerpo como urlencoded (Formspark trata multipart/FormData
+       como vacío en peticiones AJAX). No enviamos campos internos de control. */
+    const data = new FormData(form);
+    data.delete('captcha');
+    data.delete('website');
+    data.delete('_redirect');
+    const params = new URLSearchParams();
+    for (const [k, v] of data.entries()) params.append(k, v);
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: params,
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      });
+      if (!res.ok) throw new Error('Respuesta ' + res.status);
       form.reset();
       newCaptcha();
+      success.classList.add('visible');
+      setTimeout(() => success.classList.remove('visible'), 6000);
+    } catch (err) {
+      console.error('[form] ❌ ERROR al enviar:', err);
+      if (error) error.classList.add('visible');
+    } finally {
       submitBtn.disabled = false;
       submitBtn.querySelector('span').textContent = 'Enviar mensaje';
-      success.classList.add('visible');
-
-      setTimeout(() => success.classList.remove('visible'), 6000);
-    }, 1200);
+    }
   });
 
   /* clear error styles on input */
