@@ -106,26 +106,15 @@
             <option value="individual">Terapia individual</option>
             <option value="pareja">Terapia de pareja</option>
             <option value="familia">Terapia familiar</option>
-            <option value="emdr">Terapia EMDR</option>
-            <option value="no-se">No lo tengo claro aún</option>
           </select>
         </div>
         <div class="form__field">
           <label class="form__label" for="modalidad">Modalidad preferida</label>
-          <div class="form__radio-group">
-            <label class="form__radio">
-              <input type="radio" name="modalidad" value="presencial" />
-              <span>Presencial</span>
-            </label>
-            <label class="form__radio">
-              <input type="radio" name="modalidad" value="online" />
-              <span>Online</span>
-            </label>
-            <label class="form__radio">
-              <input type="radio" name="modalidad" value="cualquiera" />
-              <span>Me da igual</span>
-            </label>
-          </div>
+          <select class="form__select" id="modalidad" name="modalidad">
+            <option value="">Selecciona una opción</option>
+            <option value="presencial">Presencial</option>
+            <option value="online">Online</option>
+          </select>
         </div>
         <div class="form__field">
           <label class="form__label" for="mensaje">Cuéntame brevemente qué te trae *</label>
