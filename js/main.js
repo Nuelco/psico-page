@@ -92,6 +92,7 @@
 
     const nombre     = form.querySelector('#nombre');
     const email      = form.querySelector('#email');
+    const telefono   = form.querySelector('#telefono');
     const mensaje    = form.querySelector('#mensaje');
     const privacidad = form.querySelector('[name="privacidad"]');
     const honeypot   = form.querySelector('[name="website"]');
@@ -105,7 +106,7 @@
 
     let valid = true;
 
-    [nombre, email, mensaje].forEach(field => {
+    [nombre, email, telefono, mensaje].forEach(field => {
       const isEmpty = !field.value.trim();
       field.style.borderColor = isEmpty ? '#e87070' : '';
       if (isEmpty) valid = false;
