@@ -157,10 +157,9 @@
         }
       });
       if (!res.ok) throw new Error('Respuesta ' + res.status);
-      form.reset();
-      newCaptcha();
-      success.classList.add('visible');
-      setTimeout(() => success.classList.remove('visible'), 6000);
+      /* envío correcto: redirigimos a la página de agradecimiento */
+      window.location.href = 'gracias.html';
+      return;
     } catch (err) {
       console.error('[form] ❌ ERROR al enviar:', err);
       if (error) error.classList.add('visible');
