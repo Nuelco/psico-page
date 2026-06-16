@@ -93,8 +93,8 @@
   <input type="hidden" name="_redirect" value="https://seilazarzoso.com/gracias.html" />
 
   <div class="form__field">
-    <label class="form__label" for="nombre">Nombre *</label>
-    <input class="form__input" type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
+    <label class="form__label" for="nombre">Nombre y apellidos *</label>
+    <input class="form__input" type="text" id="nombre" name="nombre" placeholder="Tu nombre y apellidos" required />
   </div>
 
   <div class="form__field">
@@ -108,27 +108,12 @@
   </div>
 
   <div class="form__field">
-    <label class="form__label" for="servicio">¿Qué tipo de terapia te interesa?</label>
-    <select class="form__select" id="servicio" name="servicio">
+    <label class="form__label" for="horario">¿Cuándo prefieres tu cita? *</label>
+    <select class="form__select" id="horario" name="horario" required>
       <option value="">Selecciona una opción</option>
-      <option value="individual">Terapia individual</option>
-      <option value="pareja">Terapia de pareja</option>
-      <option value="familia">Terapia familiar</option>
+      <option value="manana">Mañana</option>
+      <option value="tarde">Tarde</option>
     </select>
-  </div>
-
-  <div class="form__field">
-    <label class="form__label" for="modalidad">Modalidad preferida</label>
-    <select class="form__select" id="modalidad" name="modalidad">
-      <option value="">Selecciona una opción</option>
-      <option value="presencial">Presencial</option>
-      <option value="online">Online</option>
-    </select>
-  </div>
-
-  <div class="form__field">
-    <label class="form__label" for="mensaje">Cuéntame brevemente qué te trae *</label>
-    <textarea class="form__textarea" id="mensaje" name="mensaje" placeholder="Puedes escribir lo que consideres oportuno. Toda la información es confidencial." rows="4" required></textarea>
   </div>
 
   <div class="form__honeypot" aria-hidden="true">
@@ -149,16 +134,16 @@
     </label>
   </div>
 
-  <div class="form__field form__rgpd-info" style="font-size: 0.75rem; line-height: 1.4; color: #666; margin-bottom: 20px; border-top: 1px solid #eee; padding-top: 15px;">
-    <p style="margin-bottom: 5px; font-weight: bold;">Información básica sobre protección de datos:</p>
-    <ul style="list-style: none; padding-left: 0; margin: 0;">
+  <details class="form__rgpd">
+    <summary class="form__rgpd-summary">Información básica sobre protección de datos</summary>
+    <ul class="form__rgpd-list">
       <li><strong>Responsable:</strong> Seila Zarzoso — Psicóloga General Sanitaria</li>
       <li><strong>Finalidad:</strong> Gestión y respuesta de solicitudes de información o cita previa.</li>
       <li><strong>Legitimación:</strong> Tu consentimiento explícito al marcar la casilla.</li>
       <li><strong>Destinatarios:</strong> Los datos se procesan técnicamente a través de Formspark (Bélgica, UE) para su envío inmediato por email, sin quedar almacenados en sus servidores externos.</li>
       <li><strong>Derechos:</strong> Puedes revocar tu consentimiento, acceder, rectificar o suprimir tus datos escribiendo a szarzoso.psico@gmail.com. Más información en la <a href="privacidad.html" class="form__link">política de privacidad</a>.</li>
     </ul>
-  </div>
+  </details>
 
   <button type="submit" class="btn btn--primary btn--lg btn--full">
     <span>Enviar mensaje</span>
