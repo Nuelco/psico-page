@@ -121,12 +121,6 @@
     <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
   </div>
 
-  <div class="form__field form__captcha">
-    <label class="form__label" for="captcha">Verificación: ¿Cuánto es <strong id="captchaQuestion"></strong>? *</label>
-    <input class="form__input form__input--captcha" type="number" id="captcha" name="captcha" placeholder="Tu respuesta" autocomplete="off" />
-    <span class="form__captcha-hint" id="captchaHint"></span>
-  </div>
-
   <div class="form__field form__field--checkbox">
     <label class="form__checkbox">
       <input type="checkbox" name="privacidad" required />
@@ -269,6 +263,7 @@
     </button>
   </div>
 
+  <script src="https://unpkg.com/@botpoison/browser" async></script>
   <script src="js/main.js"></script>
 </body>
 </html>

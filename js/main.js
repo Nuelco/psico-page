@@ -69,23 +69,26 @@
   });
 })();
 
-/* ---- CONTACT FORM ---- */
+/* ---- CONTACT FORM (Formspark + Botpoison antispam) ---- */
 (function initForm() {
-  const form    = document.getElementById('contactForm');
-  const success = document.getElementById('formSuccess');
-  const error   = document.getElementById('formError');
+  const form  = document.getElementById('contactForm');
+  const error = document.getElementById('formError');
   if (!form) return;
 
-  /* generate math captcha */
-  let captchaAnswer = 0;
-  function newCaptcha() {
-    const a = Math.floor(Math.random() * 9) + 1;
-    const b = Math.floor(Math.random() * 9) + 1;
-    captchaAnswer = a + b;
-    document.getElementById('captchaQuestion').textContent = `${a} + ${b}`;
-    form.querySelector('#captcha').value = '';
+  /* Botpoison: protección antispam invisible verificada por Formspark.
+     Instancia perezosa (la librería se carga de forma asíncrona). */
+  const BOTPOISON_PK = 'pk_ba3a0633-564e-43b7-9c88-398cfc188324';
+  let botpoison = null;
+  function getBotpoison() {
+    if (!botpoison) {
+      const Lib = window.Botpoison && (window.Botpoison.default || window.Botpoison);
+      if (Lib) {
+        try { botpoison = new Lib({ publicKey: BOTPOISON_PK }); }
+        catch (e) { console.error('[botpoison] init', e); }
+      }
+    }
+    return botpoison;
   }
-  newCaptcha();
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -96,12 +99,10 @@
     const horario    = form.querySelector('#horario');
     const privacidad = form.querySelector('[name="privacidad"]');
     const honeypot   = form.querySelector('[name="website"]');
-    const captcha    = form.querySelector('#captcha');
-    const captchaHint = document.getElementById('captchaHint');
 
     if (error) error.classList.remove('visible');
 
-    /* honeypot: bots fill this, humans don't. Esta parte es para evitar envíos automáticos*/
+    /* honeypot: lo rellenan los bots, no los humanos */
     if (honeypot && honeypot.value) return;
 
     let valid = true;
@@ -119,19 +120,6 @@
 
     if (!privacidad.checked) valid = false;
 
-    /* captcha validation */
-    const captchaVal = parseInt(captcha.value, 10);
-    if (!captcha.value || captchaVal !== captchaAnswer) {
-      captcha.style.borderColor = '#e87070';
-      captchaHint.textContent = 'Respuesta incorrecta. Inténtalo de nuevo.';
-      newCaptcha();
-      captcha.value = '';
-      valid = false;
-    } else {
-      captcha.style.borderColor = '';
-      captchaHint.textContent = '';
-    }
-
     if (!valid) return;
 
     /* envío real al endpoint del formulario (Formspark) vía AJAX */
@@ -139,14 +127,22 @@
     submitBtn.disabled = true;
     submitBtn.querySelector('span').textContent = 'Enviando…';
 
-    /* Construimos el cuerpo como urlencoded (Formspark trata multipart/FormData
-       como vacío en peticiones AJAX). No enviamos campos internos de control. */
+    /* Cuerpo urlencoded (Formspark trata multipart/FormData como vacío en AJAX).
+       No enviamos campos internos de control. */
     const data = new FormData(form);
-    data.delete('captcha');
     data.delete('website');
     data.delete('_redirect');
     const params = new URLSearchParams();
     for (const [k, v] of data.entries()) params.append(k, v);
+
+    /* reto antispam invisible de Botpoison */
+    try {
+      const bp = getBotpoison();
+      if (bp) {
+        const { solution } = await bp.challenge();
+        params.append('_botpoison', solution);
+      }
+    } catch (e) { console.error('[botpoison] challenge', e); }
 
     try {
       const res = await fetch(form.action, {
@@ -170,12 +166,9 @@
     }
   });
 
-  /* clear error styles on input */
-  form.querySelectorAll('input, textarea').forEach(field => {
-    field.addEventListener('input', () => {
-      field.style.borderColor = '';
-      if (field.id === 'captcha') document.getElementById('captchaHint').textContent = '';
-    });
+  /* limpia el borde de error al escribir/elegir */
+  form.querySelectorAll('input, textarea, select').forEach(field => {
+    field.addEventListener('input', () => { field.style.borderColor = ''; });
   });
 })();
 

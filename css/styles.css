@@ -1161,16 +1161,6 @@ input, textarea, select { font-family: inherit; }
   overflow: hidden;
 }
 
-/* Captcha matemático */
-.form__captcha .form__input--captcha { max-width: 140px; }
-.form__captcha-hint {
-  display: block;
-  margin-top: 0.35rem;
-  font-size: 0.8rem;
-  color: #e87070;
-  min-height: 1rem;
-}
-
 /* ---- TE RECONOCES ---- */
 .selfcheck {
   padding: 7rem 2rem;
@@ -2404,6 +2394,9 @@ input, textarea, select { font-family: inherit; }
   display: flex;
   align-items: center;
   gap: 0.45rem;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
   user-select: none;
   transition: color .2s;
 }
