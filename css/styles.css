@@ -420,9 +420,7 @@ input, textarea, select { font-family: inherit; }
 .about__image-wrap { position: relative; }
 .about__image-real {
   width: 100%;
-  aspect-ratio: 3/4;
-  object-fit: contain;
-  object-position: center top;
+  height: auto;
   display: block;
   border-radius: var(--radius-xl);
 }
@@ -1627,7 +1625,7 @@ input, textarea, select { font-family: inherit; }
 /* ---- HISTORIA / ABOUT-STORY (sobre-mi.html, mobile-first) ---- */
 .about-story {
   padding: 3.5rem 1.25rem;
-  background: var(--clr-primary-llt);
+  background: url('../assets/mariposa_paisaje.png') center center / cover no-repeat;
 }
 /* --- Efecto "página de un libro" --- */
 .about-story__inner {
@@ -1636,10 +1634,10 @@ input, textarea, select { font-family: inherit; }
   max-width: 68ch;
   margin: 0 auto;
   padding: clamp(1.75rem, 6vw, 3.25rem) clamp(1.5rem, 6vw, 3rem);
-  background: #fbf6ec;
-  border: 1px solid #e7dcc4;
+  background: #ffffff;
+  border: 1px solid var(--clr-border);
   border-radius: 4px;
-  box-shadow: 0 18px 45px -20px rgba(61, 115, 112, 0.35), 0 2px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 18px 45px -20px rgba(61, 115, 112, 0.35), 0 2px 6px rgba(61, 115, 112, 0.06);
 }
 /* hojas apiladas detrás, ligeramente giradas, asomando por las esquinas */
 .about-story__inner::before,
@@ -1648,8 +1646,8 @@ input, textarea, select { font-family: inherit; }
   position: absolute;
   z-index: -1;
   inset: 0;
-  background: #f5edda;
-  border: 1px solid #e7dcc4;
+  background: var(--clr-primary-llt);
+  border: 1px solid var(--clr-primary-lt);
   border-radius: 4px;
 }
 .about-story__inner::before { transform: rotate(-1.6deg); }
@@ -1657,7 +1655,7 @@ input, textarea, select { font-family: inherit; }
 .about-story__text {
   font-family: var(--font-serif);
   font-size: 1.05rem;
-  color: #4a4036;
+  color: var(--clr-text-muted);
   line-height: 1.95;
   margin-bottom: 1.4rem;
 }
@@ -1672,17 +1670,38 @@ input, textarea, select { font-family: inherit; }
 }
 .about-story__quote {
   margin: 2rem 0;
-  padding: 1.25rem 1.6rem;
-  background: rgba(61, 115, 112, 0.05);
-  border-left: 3px solid var(--clr-primary-dk);
+  padding: 1.5rem 1.75rem;
+  background: #ffffff;
+  border-left: 4px solid var(--clr-primary-ddk);
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  box-shadow: var(--shadow-md);
 }
 .about-story__quote p {
   font-family: var(--font-serif);
   font-style: italic;
+  font-weight: 600;
   font-size: 1.1rem;
-  color: #3a322a;
+  color: var(--clr-text);
   line-height: 1.75;
+}
+
+/* En smartphone: sin imagen de fondo ni hojas apiladas, para no entorpecer la
+   lectura. La "página" blanca ocupa toda la sección, de borde a borde. */
+@media (max-width: 640px) {
+  .about-story {
+    padding: 0;
+    background: #ffffff;
+  }
+  .about-story__inner {
+    max-width: none;
+    margin: 0;
+    padding: 2.5rem 1.25rem;
+    background: var(--clr-primary-llt);
+  }
+  .about-story__inner::before,
+  .about-story__inner::after {
+    display: none;
+  }
 }
 
 @media (min-width: 768px) {
