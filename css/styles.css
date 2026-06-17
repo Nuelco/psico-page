@@ -517,10 +517,10 @@ input, textarea, select { font-family: inherit; }
 }
 
 .about__scroll-hint {
-  grid-column: 1 / -1;
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
   gap: 0.4rem;
   width: fit-content;
   margin: 2rem auto 0;
@@ -530,7 +530,11 @@ input, textarea, select { font-family: inherit; }
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--clr-text-light);
-  animation: bounce-scroll 2.5s ease-in-out infinite;
+  animation: bounce-y 2.5s ease-in-out infinite;
+}
+@keyframes bounce-y {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(6px); }
 }
 
 .about__quote {
@@ -1623,31 +1627,61 @@ input, textarea, select { font-family: inherit; }
 /* ---- HISTORIA / ABOUT-STORY (sobre-mi.html, mobile-first) ---- */
 .about-story {
   padding: 3.5rem 1.25rem;
-  background: var(--clr-bg);
+  background: var(--clr-primary-llt);
 }
+/* --- Efecto "página de un libro" --- */
 .about-story__inner {
+  position: relative;
+  z-index: 0;
   max-width: 68ch;
   margin: 0 auto;
+  padding: clamp(1.75rem, 6vw, 3.25rem) clamp(1.5rem, 6vw, 3rem);
+  background: #fbf6ec;
+  border: 1px solid #e7dcc4;
+  border-radius: 4px;
+  box-shadow: 0 18px 45px -20px rgba(61, 115, 112, 0.35), 0 2px 6px rgba(0, 0, 0, 0.05);
 }
+/* hojas apiladas detrás, ligeramente giradas, asomando por las esquinas */
+.about-story__inner::before,
+.about-story__inner::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: #f5edda;
+  border: 1px solid #e7dcc4;
+  border-radius: 4px;
+}
+.about-story__inner::before { transform: rotate(-1.6deg); }
+.about-story__inner::after  { transform: rotate(1.3deg); }
 .about-story__text {
-  font-size: 1rem;
-  color: var(--clr-text-muted);
-  line-height: 1.85;
-  margin-bottom: 1.5rem;
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  color: #4a4036;
+  line-height: 1.95;
+  margin-bottom: 1.4rem;
+}
+/* letra capitular al inicio, como en un libro */
+.about-story__text:first-of-type::first-letter {
+  float: left;
+  font-family: var(--font-serif);
+  font-size: 3.4rem;
+  line-height: 0.78;
+  padding: 0.4rem 0.55rem 0 0;
+  color: var(--clr-primary-ddk);
 }
 .about-story__quote {
   margin: 2rem 0;
-  padding: 1.5rem 1.75rem;
-  background: var(--clr-surface);
+  padding: 1.25rem 1.6rem;
+  background: rgba(61, 115, 112, 0.05);
   border-left: 3px solid var(--clr-primary-dk);
-  border-radius: 0 var(--radius-md) var(--radius-md) 0;
-  box-shadow: var(--shadow-sm);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
 }
 .about-story__quote p {
   font-family: var(--font-serif);
   font-style: italic;
   font-size: 1.1rem;
-  color: var(--clr-text);
+  color: #3a322a;
   line-height: 1.75;
 }
 
