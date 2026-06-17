@@ -1822,7 +1822,11 @@ input, textarea, select { font-family: inherit; }
   align-items: center;
   gap: 0.35rem;
   margin-top: auto;
-  padding-top: 0.75rem;
+  padding: 0.75rem 0 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
   font-size: 0.82rem;
   font-weight: 600;
   color: var(--clr-primary-ddk);
@@ -1830,6 +1834,29 @@ input, textarea, select { font-family: inherit; }
   transition: gap 0.2s var(--ease-out);
 }
 .approach__card-more:hover { gap: 0.6rem; }
+.approach__card-more-icon { transition: transform 0.25s var(--ease-out); }
+.approach__card-more[aria-expanded="true"] .approach__card-more-icon { transform: rotate(180deg); }
+
+/* Panel desplegable de EMDR dentro de la tarjeta de Terapia EMDR */
+.emdr-panel {
+  margin-top: 0.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--clr-border);
+  text-align: left;
+  animation: emdr-fade 0.3s var(--ease-out);
+}
+.emdr-panel__title {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  color: var(--clr-primary-ddk);
+  margin-bottom: 0.85rem;
+}
+.emdr-panel .emdr__text { max-width: none; }
+.emdr-panel .emdr__steps { margin-top: 1.25rem; }
+@keyframes emdr-fade {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: none; }
+}
 .approach__card-icon {
   width: 46px;
   height: 46px;

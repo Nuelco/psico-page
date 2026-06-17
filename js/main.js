@@ -65,7 +65,9 @@
 (function initActiveNav() {
   const page = location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.nav__link').forEach(link => {
-    if (link.getAttribute('href') === page) link.classList.add('active');
+    const href = link.getAttribute('href');
+    /* no resaltamos "Inicio": debe verse igual que el resto de enlaces */
+    if (href === page && href !== 'index.html') link.classList.add('active');
   });
 })();
 
@@ -274,6 +276,28 @@ document.head.appendChild(style);
     });
 
     section.insertBefore(scene, section.firstChild);
+  });
+})();
+
+/* ---- TOGGLE PANEL EMDR (servicios) ---- */
+(function initEmdrToggle() {
+  const btn   = document.getElementById('emdrToggle');
+  const panel = document.getElementById('emdrPanel');
+  if (!btn || !panel) return;
+  const label = btn.querySelector('.approach__card-more-label');
+
+  btn.addEventListener('click', () => {
+    const isOpen = !panel.hasAttribute('hidden');
+    if (isOpen) {
+      panel.setAttribute('hidden', '');
+      btn.setAttribute('aria-expanded', 'false');
+      if (label) label.textContent = 'Ver más';
+    } else {
+      panel.removeAttribute('hidden');
+      btn.setAttribute('aria-expanded', 'true');
+      if (label) label.textContent = 'Ver menos';
+      panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
   });
 })();
 

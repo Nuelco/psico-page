@@ -30,6 +30,7 @@
         <img src="assets/logo.png" alt="Seila Zarzoso Psicología" class="nav__logo-img" />
       </a>
       <ul class="nav__links">
+        <li><a href="index.html" class="nav__link">Inicio</a></li>
         <li><a href="sobre-mi.html" class="nav__link">Sobre mí</a></li>
         <li><a href="servicios.html" class="nav__link">Servicios</a></li>
         <li><a href="modalidades.html" class="nav__link">Modalidades</a></li>
@@ -39,6 +40,7 @@
       <button class="nav__burger" id="navBurger" aria-label="Menú"><span></span><span></span><span></span></button>
     </div>
     <div class="nav__mobile" id="navMobile">
+      <a href="index.html" class="nav__mobile-link">Inicio</a>
       <a href="sobre-mi.html" class="nav__mobile-link">Sobre mí</a>
       <a href="servicios.html" class="nav__mobile-link">Servicios</a>
       <a href="modalidades.html" class="nav__mobile-link">Modalidades</a>
@@ -103,10 +105,38 @@
           </div>
           <h3 class="approach__card-title">Terapia EMDR</h3>
           <p class="approach__card-text">Como terapeuta EMDR, trabajo teniendo en cuenta cómo las experiencias vitales pueden influir en nuestro presente. A través de este enfoque es posible procesar experiencias difíciles que continúan generando malestar emocional, facilitando una mayor sensación de bienestar y equilibrio.</p>
-          <a href="#emdr" class="approach__card-more">
-            Ver más
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-          </a>
+          <button type="button" class="approach__card-more" id="emdrToggle" aria-expanded="false" aria-controls="emdrPanel">
+            <span class="approach__card-more-label">Ver más</span>
+            <svg class="approach__card-more-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+          </button>
+          <div class="emdr-panel" id="emdrPanel" hidden>
+            <h4 class="emdr-panel__title">¿Qué es la terapia EMDR?</h4>
+            <p class="emdr__text">EMDR son las siglas de <strong>Eye Movement Desensitization and Reprocessing</strong> (Desensibilización y Reprocesamiento por Movimientos Oculares). Es una terapia psicológica reconocida por la OMS para el tratamiento del trauma.</p>
+            <p class="emdr__text">A través de estimulación bilateral, ayudamos al cerebro a procesar memorias traumáticas que quedaron "atrapadas", liberándote de su impacto emocional y permitiéndote integrarlas de forma saludable.</p>
+            <div class="emdr__steps">
+              <div class="emdr__step">
+                <span class="emdr__step-num">01</span>
+                <div>
+                  <h4>Evaluación y preparación</h4>
+                  <p>Exploramos tu historia y establecemos un plan de trabajo seguro.</p>
+                </div>
+              </div>
+              <div class="emdr__step">
+                <span class="emdr__step-num">02</span>
+                <div>
+                  <h4>Procesamiento</h4>
+                  <p>Trabajamos con las memorias perturbadoras mediante estimulación bilateral.</p>
+                </div>
+              </div>
+              <div class="emdr__step">
+                <span class="emdr__step-num">03</span>
+                <div>
+                  <h4>Integración</h4>
+                  <p>Consolidamos los cambios y fortalecemos tu bienestar emocional.</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="approach__card reveal-up" style="--delay:0.2s">
           <div class="approach__card-icon" aria-hidden="true">
@@ -121,61 +151,6 @@
         <p>Creo firmemente que todas las personas poseen recursos para afrontar sus dificultades. Mi labor consiste en ayudarte a descubrirlos, potenciarlos y utilizarlos para avanzar hacia la vida que deseas.</p>
       </blockquote>
 
-    </div>
-  </section>
-
-  <!-- EMDR DESTACADO -->
-  <section class="emdr" id="emdr">
-    <div class="emdr__inner">
-      <div class="emdr__content reveal-left">
-        <p class="section__eyebrow section__eyebrow--light">Especialidad</p>
-        <h2 class="emdr__title">¿Qué es la terapia EMDR?</h2>
-        <p class="emdr__text">
-          EMDR son las siglas de <strong>Eye Movement Desensitization and Reprocessing</strong> (Desensibilización y Reprocesamiento por Movimientos Oculares). Es una terapia psicológica reconocida por la OMS para el tratamiento del trauma.
-        </p>
-        <p class="emdr__text">
-          A través de estimulación bilateral, ayudamos al cerebro a procesar memorias traumáticas que quedaron "atrapadas", liberándote de su impacto emocional y permitiéndote integrarlas de forma saludable.
-        </p>
-        <div class="emdr__steps">
-          <div class="emdr__step">
-            <span class="emdr__step-num">01</span>
-            <div>
-              <h4>Evaluación y preparación</h4>
-              <p>Exploramos tu historia y establecemos un plan de trabajo seguro.</p>
-            </div>
-          </div>
-          <div class="emdr__step">
-            <span class="emdr__step-num">02</span>
-            <div>
-              <h4>Procesamiento</h4>
-              <p>Trabajamos con las memorias perturbadoras mediante estimulación bilateral.</p>
-            </div>
-          </div>
-          <div class="emdr__step">
-            <span class="emdr__step-num">03</span>
-            <div>
-              <h4>Integración</h4>
-              <p>Consolidamos los cambios y fortalecemos tu bienestar emocional.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="emdr__visual reveal-right">
-        <div class="emdr__card emdr__card--main">
-          <div class="emdr__pulse-ring"></div>
-          <div class="emdr__pulse-ring emdr__pulse-ring--2"></div>
-          <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-          <p>Reconocida por la OMS</p>
-        </div>
-        <div class="emdr__card emdr__card--sm emdr__card--top-right">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
-          Evidencia científica
-        </div>
-        <div class="emdr__card emdr__card--sm emdr__card--bottom-left">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-          Proceso gentil
-        </div>
-      </div>
     </div>
   </section>
 
