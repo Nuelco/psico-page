@@ -99,6 +99,7 @@ input, textarea, select { font-family: inherit; }
   align-items: center;
   gap: 0.5rem;
   padding: 0.7rem 1.5rem;
+  border: 1.5px solid transparent;
   border-radius: var(--radius-md);
   font-size: 0.9rem;
   font-weight: 600;
@@ -119,12 +120,12 @@ input, textarea, select { font-family: inherit; }
 }
 
 .btn--ghost {
-  background: transparent;
+  background: var(--clr-primary-llt);
   color: var(--clr-primary-ddk);
   border: 1.5px solid var(--clr-primary);
 }
 .btn--ghost:hover {
-  background: var(--clr-primary-llt);
+  background: var(--clr-primary-lt);
   border-color: var(--clr-primary-dk);
 }
 
@@ -320,6 +321,11 @@ input, textarea, select { font-family: inherit; }
   margin-bottom: 2rem;
   position: relative;
   z-index: 1;
+}
+/* "Ver servicios" (fantasma) con menos padding lateral para igualar el ancho de "Pedir cita" */
+.hero__actions .btn--ghost {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
 }
 
 .hero__badges {
@@ -596,6 +602,51 @@ input, textarea, select { font-family: inherit; }
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
+}
+
+/* Áreas de trabajo (en qué puedo ayudarte) */
+.services__areas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+.services__area {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.9rem 1.15rem;
+  background: #ffffff;
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-md);
+  font-size: 0.98rem;
+  color: var(--clr-text);
+  box-shadow: var(--shadow-sm);
+  transition: transform .2s, box-shadow .2s, border-color .2s;
+}
+.services__area:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--clr-primary);
+}
+.services__area svg { flex-shrink: 0; color: var(--clr-primary-dk); }
+.services__cta {
+  margin-top: 3rem;
+  text-align: center;
+}
+.services__cta p {
+  max-width: 52ch;
+  margin: 0 auto 1.5rem;
+  color: var(--clr-text-muted);
+  line-height: 1.7;
+}
+@media (min-width: 600px) {
+  .services__areas { grid-template-columns: 1fr 1fr; }
+}
+@media (min-width: 960px) {
+  .services__areas { grid-template-columns: 1fr 1fr 1fr; }
 }
 
 .service-card {
