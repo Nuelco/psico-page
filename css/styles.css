@@ -423,12 +423,41 @@ input, textarea, select { font-family: inherit; }
   margin: 0 auto;
 }
 
-.about__image-wrap { position: relative; }
+.about__image-wrap {
+  position: relative;
+  --arch: 999px 999px var(--radius-lg) var(--radius-lg);
+  --frame-offset: clamp(12px, 1.8vw, 18px);
+}
 .about__image-real {
+  position: relative;
+  z-index: 1;
   width: 100%;
   height: auto;
   display: block;
-  border-radius: var(--radius-xl);
+  border-radius: var(--arch);
+  box-shadow: var(--shadow-lg);
+}
+/* Marco perfilado desplazado: eco del arco en sage, detrás de la foto */
+.about__image-wrap::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1.5px solid var(--clr-primary-dk);
+  border-radius: var(--arch);
+  transform: translate(calc(var(--frame-offset) * -1), var(--frame-offset));
+  opacity: 0.55;
+  pointer-events: none;
+}
+/* Halo cálido taupe tras la esquina inferior derecha */
+.about__image-wrap::after {
+  content: "";
+  position: absolute;
+  right: -2rem;
+  bottom: -1.5rem;
+  width: 60%;
+  aspect-ratio: 1;
+  background: radial-gradient(circle, var(--clr-accent-lt) 0%, transparent 68%);
+  pointer-events: none;
 }
 
 .about__credential-card {
@@ -1851,6 +1880,7 @@ input, textarea, select { font-family: inherit; }
   color: var(--clr-primary-ddk);
   margin-bottom: 0.85rem;
 }
+.emdr-panel__title:not(:first-child) { margin-top: 1.5rem; }
 .emdr-panel .emdr__text { max-width: none; }
 .emdr-panel .emdr__steps { margin-top: 1.25rem; }
 @keyframes emdr-fade {
