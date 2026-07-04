@@ -633,14 +633,17 @@ input, textarea, select { font-family: inherit; }
   gap: 2rem;
 }
 
-/* Áreas de trabajo (en qué puedo ayudarte) */
+/* Áreas de trabajo (en qué puedo ayudarte): burbuja contenedora */
 .services__areas {
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 1.5rem;
   display: grid;
   grid-template-columns: 1fr;
   gap: 0.75rem;
+  background: var(--clr-primary-llt);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-xl);
 }
 .services__area {
   display: flex;
@@ -672,10 +675,10 @@ input, textarea, select { font-family: inherit; }
   line-height: 1.7;
 }
 @media (min-width: 600px) {
-  .services__areas { grid-template-columns: 1fr 1fr; }
+  .services__areas { grid-template-columns: 1fr 1fr; padding: 2rem; }
 }
 @media (min-width: 960px) {
-  .services__areas { grid-template-columns: 1fr 1fr 1fr; }
+  .services__areas { grid-template-columns: 1fr 1fr 1fr; padding: 2.5rem; }
 }
 
 .service-card {
@@ -939,6 +942,35 @@ input, textarea, select { font-family: inherit; }
   color: var(--clr-text);
 }
 .modality-card__features li svg { color: var(--clr-primary-dk); flex-shrink: 0; }
+
+.modality-card__price {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--clr-border);
+}
+.modality-card__price-amount {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--clr-primary-ddk);
+  letter-spacing: -0.02em;
+}
+.modality-card__price-unit {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--clr-text-muted);
+}
+
+/* Tercera tarjeta (pareja/familia): ocupa la fila completa en tablet,
+   columna propia en escritorio ancho */
+.modality-card--family { grid-column: 1 / -1; }
+@media (min-width: 1025px) {
+  .modalities__grid { grid-template-columns: repeat(3, 1fr); }
+  .modality-card { padding: 2.5rem; }
+  .modality-card--family { grid-column: auto; }
+}
 
 /* ---- PROCESS ---- */
 .process {
