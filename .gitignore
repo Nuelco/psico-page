@@ -2,3 +2,6 @@ assets/remove_bg.py
 *.py
 .DS_Store
 Thumbs.db
+
+# credenciales SMTP del formulario (solo en el servidor)
+config.php

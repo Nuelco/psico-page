@@ -71,26 +71,11 @@
   });
 })();
 
-/* ---- CONTACT FORM (Formspark + Botpoison antispam) ---- */
+/* ---- CONTACT FORM (enviar.php por SMTP en el propio hosting) ---- */
 (function initForm() {
   const form  = document.getElementById('contactForm');
   const error = document.getElementById('formError');
   if (!form) return;
-
-  /* Botpoison: protección antispam invisible verificada por Formspark.
-     Instancia perezosa (la librería se carga de forma asíncrona). */
-  const BOTPOISON_PK = 'pk_ba3a0633-564e-43b7-9c88-398cfc188324';
-  let botpoison = null;
-  function getBotpoison() {
-    if (!botpoison) {
-      const Lib = window.Botpoison && (window.Botpoison.default || window.Botpoison);
-      if (Lib) {
-        try { botpoison = new Lib({ publicKey: BOTPOISON_PK }); }
-        catch (e) { console.error('[botpoison] init', e); }
-      }
-    }
-    return botpoison;
-  }
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -124,27 +109,15 @@
 
     if (!valid) return;
 
-    /* envío real al endpoint del formulario (Formspark) vía AJAX */
+    /* envío real a enviar.php (mismo servidor) vía AJAX */
     const submitBtn = form.querySelector('[type="submit"]');
     submitBtn.disabled = true;
     submitBtn.querySelector('span').textContent = 'Enviando…';
 
-    /* Cuerpo urlencoded (Formspark trata multipart/FormData como vacío en AJAX).
-       No enviamos campos internos de control. */
+    /* Cuerpo urlencoded; el honeypot viaja vacío y lo comprueba el servidor */
     const data = new FormData(form);
-    data.delete('website');
-    data.delete('_redirect');
     const params = new URLSearchParams();
     for (const [k, v] of data.entries()) params.append(k, v);
-
-    /* reto antispam invisible de Botpoison */
-    try {
-      const bp = getBotpoison();
-      if (bp) {
-        const { solution } = await bp.challenge();
-        params.append('_botpoison', solution);
-      }
-    } catch (e) { console.error('[botpoison] challenge', e); }
 
     try {
       const res = await fetch(form.action, {
