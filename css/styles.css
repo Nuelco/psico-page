@@ -1151,6 +1151,12 @@ input, textarea, select { font-family: inherit; }
   font-weight: 600;
   color: var(--clr-text);
 }
+.contact__detail-link {
+  color: var(--clr-primary-ddk);
+  text-decoration: none;
+  transition: color 0.2s var(--ease-out);
+}
+.contact__detail-link:hover { color: var(--clr-primary-dk); text-decoration: underline; }
 
 /* form */
 .contact__form {
@@ -1479,36 +1485,118 @@ input, textarea, select { font-family: inherit; }
   border: 1px solid var(--clr-border);
   border-radius: var(--radius-sm);
 }
-.reviews__widget {
-  width: 100%;
-  min-height: 320px;
-  position: relative;
-}
-/* Skeleton mientras carga el widget */
-.reviews__widget::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg,
-    var(--clr-border) 25%,
-    var(--clr-primary-llt) 50%,
-    var(--clr-border) 75%);
-  background-size: 200% 100%;
+/* --- Reseñas propias (sin widgets de terceros) --- */
+.gr__summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  background: var(--clr-surface);
   border-radius: var(--radius-lg);
-  animation: skeleton-shimmer 1.6s ease-in-out infinite;
-  opacity: 1;
-  transition: opacity 0.4s ease;
-  pointer-events: none;
+  padding: 1.75rem 2rem;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 2rem;
 }
-/* Oculta el skeleton cuando el widget ya ha cargado */
-.reviews__widget:has(iframe)::before,
-.reviews__widget:has([class*="eapps"])::before {
-  opacity: 0;
+.gr__brand {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--clr-text);
 }
-@keyframes skeleton-shimmer {
-  0%   { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+.gr__google { color: var(--clr-primary-ddk); font-size: 1.5rem; letter-spacing: -0.02em; }
+.gr__stars { color: #f59e0b; letter-spacing: 2px; line-height: 1; }
+.gr__stars--sm { font-size: 1.1rem; }
+
+.gr__carousel { position: relative; }
+.gr__track {
+  display: flex;
+  gap: 1.25rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  padding-bottom: 0.25rem;
 }
+.gr__track::-webkit-scrollbar { display: none; }
+.gr__card {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  background: var(--clr-surface);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.7rem;
+}
+@media (min-width: 640px)  { .gr__card { flex-basis: calc((100% - 1.25rem) / 2); } }
+@media (min-width: 900px)  { .gr__card { flex-basis: calc((100% - 2.5rem) / 3); } }
+@media (min-width: 1200px) { .gr__card { flex-basis: calc((100% - 5rem) / 5); } }
+.gr__card-head { display: flex; align-items: center; gap: 0.45rem; }
+.gr__name { font-weight: 700; color: var(--clr-text); }
+.gr__badge { color: var(--clr-primary-dk); flex-shrink: 0; }
+.gr__text {
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: var(--clr-text);
+  display: -webkit-box;
+  -webkit-line-clamp: 9;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.gr__card.expanded .gr__text {
+  display: block;
+  -webkit-line-clamp: none;
+  overflow: visible;
+}
+.gr__more {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--clr-primary-ddk);
+  cursor: pointer;
+}
+.gr__more:hover { text-decoration: underline; }
+
+.gr__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--clr-border);
+  background: var(--clr-surface);
+  color: var(--clr-primary-ddk);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  transition: background 0.2s, transform 0.2s var(--ease-out), opacity 0.2s;
+}
+.gr__arrow:hover { background: var(--clr-primary-llt); transform: translateY(-50%) scale(1.06); }
+.gr__arrow:disabled { opacity: 0.35; cursor: default; pointer-events: none; }
+.gr__arrow--prev { left: -12px; }
+.gr__arrow--next { right: -12px; }
+
+.gr__dots { display: flex; justify-content: center; gap: 0.5rem; margin-top: 1.5rem; }
+.gr__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 0;
+  padding: 0;
+  background: rgba(28, 49, 48, 0.22);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.gr__dot.active { background: var(--clr-text); transform: scale(1.2); }
 .review-card {
   background: var(--clr-surface);
   border-radius: var(--radius-lg);
@@ -1609,6 +1697,19 @@ input, textarea, select { font-family: inherit; }
   line-height: 1.7;
   max-width: 32ch;
 }
+.footer__social {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  transition: color 0.2s var(--ease-out);
+}
+.footer__social:hover { color: #ffffff; }
+.footer__social svg { flex-shrink: 0; }
 
 .footer__nav-title {
   font-size: 0.72rem;
@@ -1631,6 +1732,12 @@ input, textarea, select { font-family: inherit; }
   font-size: 0.88rem;
   margin-bottom: 0.5rem;
 }
+.footer__contact p a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer__contact p a:hover { color: #fff; }
 .footer__cta { margin-top: 1.25rem; }
 
 .footer__bottom {
@@ -1727,6 +1834,38 @@ input, textarea, select { font-family: inherit; }
   .footer__brand { grid-column: span 1; }
 }
 
+/* Footer móvil: marca centrada con el logo como protagonista,
+   navegación y servicios a dos columnas, contacto centrado */
+@media (max-width: 640px) {
+  .footer { padding: 3.5rem 1.5rem 2rem; }
+  .footer__inner {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem 1.5rem;
+    margin-bottom: 3rem;
+  }
+  .footer__brand {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 2.25rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .footer__logo { margin: 0 auto 1.25rem; }
+  .footer__desc { max-width: 34ch; }
+  .footer__nav { min-width: 0; }
+  .footer__contact {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-top: 1.75rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+}
+
 /* ============================================================
    ZEN — MARIPOSAS & DECORACIÓN
    ============================================================ */
@@ -1742,35 +1881,31 @@ input, textarea, select { font-family: inherit; }
   padding: 3.5rem 1.25rem;
   background: url('../assets/mariposa_paisaje.png') center center / cover no-repeat;
 }
-/* --- Efecto "página de un libro" --- */
+/* --- Panel de cristal esmerilado sobre el paisaje --- */
 .about-story__inner {
   position: relative;
   z-index: 0;
   max-width: 68ch;
   margin: 0 auto;
   padding: clamp(1.75rem, 6vw, 3.25rem) clamp(1.5rem, 6vw, 3rem);
-  background: #ffffff;
-  border: 1px solid var(--clr-border);
-  border-radius: 4px;
-  box-shadow: 0 18px 45px -20px rgba(61, 115, 112, 0.35), 0 2px 6px rgba(61, 115, 112, 0.06);
+  background: rgba(255, 255, 255, 0.88); /* fallback sin backdrop-filter */
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: var(--radius-lg);
+  box-shadow:
+    0 18px 45px -20px rgba(61, 115, 112, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
 }
-/* hojas apiladas detrás, ligeramente giradas, asomando por las esquinas */
-.about-story__inner::before,
-.about-story__inner::after {
-  content: '';
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  background: var(--clr-primary-llt);
-  border: 1px solid var(--clr-primary-lt);
-  border-radius: 4px;
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .about-story__inner {
+    background: rgba(255, 255, 255, 0.62);
+    -webkit-backdrop-filter: blur(16px) saturate(1.35);
+    backdrop-filter: blur(16px) saturate(1.35);
+  }
 }
-.about-story__inner::before { transform: rotate(-1.6deg); }
-.about-story__inner::after  { transform: rotate(1.3deg); }
 .about-story__text {
   font-family: var(--font-serif);
   font-size: 1.05rem;
-  color: var(--clr-text-muted);
+  color: var(--clr-text);
   line-height: 1.95;
   margin-bottom: 1.4rem;
 }
@@ -1812,10 +1947,11 @@ input, textarea, select { font-family: inherit; }
     margin: 0;
     padding: 2.5rem 1.25rem;
     background: var(--clr-primary-llt);
-  }
-  .about-story__inner::before,
-  .about-story__inner::after {
-    display: none;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
   }
 }
 
@@ -1840,7 +1976,7 @@ input, textarea, select { font-family: inherit; }
 /* ---- MI ENFOQUE (sobre-mi.html, mobile-first) ---- */
 .approach {
   padding: 3.5rem 1.25rem;
-  background: var(--clr-bg);
+  background: var(--clr-surface);
 }
 .approach__inner {
   max-width: var(--max-w);
@@ -1868,7 +2004,7 @@ input, textarea, select { font-family: inherit; }
   margin-bottom: 2.5rem;
 }
 .approach__card {
-  background: var(--clr-surface);
+  background: var(--clr-bg);
   border: 1px solid var(--clr-border);
   border-radius: var(--radius-lg);
   padding: 1.75rem;
