@@ -2187,7 +2187,7 @@ input, textarea, select { font-family: inherit; }
 /* ---- Lista con categorías (cursos) ---- */
 .training__cat-list {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 2rem;
 }
 .training__cat-label {
@@ -2229,6 +2229,15 @@ input, textarea, select { font-family: inherit; }
 .training__list-b li span {
   font-size: 0.76rem;
   color: var(--clr-text-muted);
+}
+/* Una sola categoría: los puntos se reparten en dos columnas en escritorio */
+@media (min-width: 769px) {
+  .training__list-b {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 2.5rem;
+    row-gap: 0.9rem;
+  }
 }
 
 @media (max-width: 768px) {
