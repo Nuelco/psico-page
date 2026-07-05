@@ -176,6 +176,60 @@ document.querySelectorAll('.faq__question').forEach(btn => {
   });
 });
 
+/* ---- CARRUSEL DE RESEÑAS (index, sin terceros) ---- */
+(function initReviewsCarousel() {
+  const track = document.getElementById('grTrack');
+  if (!track) return;
+  const prev    = document.querySelector('.gr__arrow--prev');
+  const next    = document.querySelector('.gr__arrow--next');
+  const dotsBox = document.getElementById('grDots');
+
+  const pageW     = () => track.clientWidth;
+  const pageCount = () => Math.max(1, Math.ceil(track.scrollWidth / pageW()));
+  const current   = () => Math.round(track.scrollLeft / pageW());
+
+  function renderDots() {
+    dotsBox.innerHTML = '';
+    for (let i = 0; i < pageCount(); i++) {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'gr__dot';
+      b.setAttribute('aria-label', 'Ir a la página ' + (i + 1) + ' de reseñas');
+      b.addEventListener('click', () => track.scrollTo({ left: i * pageW(), behavior: 'smooth' }));
+      dotsBox.appendChild(b);
+    }
+  }
+  function updateUI() {
+    const p = current();
+    prev.disabled = p <= 0;
+    next.disabled = p >= pageCount() - 1;
+    Array.from(dotsBox.children).forEach((d, i) => d.classList.toggle('active', i === p));
+  }
+  prev.addEventListener('click', () => track.scrollBy({ left: -pageW(), behavior: 'smooth' }));
+  next.addEventListener('click', () => track.scrollBy({ left: pageW(), behavior: 'smooth' }));
+
+  let scrollTimer;
+  track.addEventListener('scroll', () => {
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(updateUI, 90);
+  }, { passive: true });
+  window.addEventListener('resize', () => { renderDots(); updateUI(); });
+  renderDots();
+  updateUI();
+
+  /* "Leer más" solo en tarjetas cuyo texto queda recortado */
+  document.querySelectorAll('.gr__card').forEach(card => {
+    const text = card.querySelector('.gr__text');
+    const btn  = card.querySelector('.gr__more');
+    if (!text || !btn) return;
+    if (text.scrollHeight > text.clientHeight + 4) btn.hidden = false;
+    btn.addEventListener('click', () => {
+      const open = card.classList.toggle('expanded');
+      btn.textContent = open ? 'Leer menos' : 'Leer más';
+    });
+  });
+})();
+
 /* ---- ACTIVE NAV LINK styling ---- */
 const style = document.createElement('style');
 style.textContent = `.nav__link.active { color: var(--clr-primary-ddk); background: var(--clr-primary-llt); }`;
@@ -275,8 +329,8 @@ document.head.appendChild(style);
 })();
 
 /* ---- COOKIE CONSENT (RGPD / LSSI / Guía AEPD) ----
-   Bloquea contenido de terceros (Google Maps + reseñas de Google vía Elfsight)
-   hasta que el usuario da su consentimiento. Rechazar es tan fácil como aceptar.
+   Bloquea contenido de terceros (Google Maps) hasta que el usuario da su
+   consentimiento. Rechazar es tan fácil como aceptar.
    El consentimiento se guarda en localStorage (almacenamiento técnico exento). */
 (function initCookieConsent() {
   const KEY = 'sz-cookie-consent';            // 'accepted' | 'rejected'
@@ -290,14 +344,6 @@ document.head.appendChild(style);
       f.src = f.getAttribute('data-src');
       f.removeAttribute('data-src');
     });
-    /* widget de reseñas (Elfsight) */
-    if (document.querySelector('[data-elfsight]') && !document.getElementById('elfsight-platform')) {
-      const s = document.createElement('script');
-      s.src = 'https://elfsightcdn.com/platform.js';
-      s.async = true;
-      s.id = 'elfsight-platform';
-      document.body.appendChild(s);
-    }
     /* ocultar carteles de "permitir contenido" */
     document.querySelectorAll('.consent-block').forEach(b => b.classList.add('consent-loaded'));
   }
@@ -314,7 +360,7 @@ document.head.appendChild(style);
       <div class="cookie-banner__inner">
         <div class="cookie-banner__text">
           <p class="cookie-banner__title">Tu privacidad</p>
-          <p>Usamos cookies técnicas propias (necesarias) y, solo con tu permiso, cookies de terceros para mostrar el mapa de Google Maps y las reseñas de Google. Puedes aceptarlas, rechazarlas o leer más en la <a href="cookies.html">política de cookies</a>.</p>
+          <p>Usamos cookies técnicas propias (necesarias) y, solo con tu permiso, cookies de terceros para mostrar el mapa de Google Maps. Puedes aceptarlas, rechazarlas o leer más en la <a href="cookies.html">política de cookies</a>.</p>
         </div>
         <div class="cookie-banner__actions">
           <button type="button" class="btn cookie-banner__btn cookie-banner__btn--reject" id="cookieReject">Rechazar</button>
