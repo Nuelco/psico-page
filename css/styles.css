@@ -580,9 +580,12 @@ input, textarea, select { font-family: inherit; }
 .about__quote p {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 1.05rem;
+  font-size: 1.25rem;
   color: var(--clr-text);
-  line-height: 1.75;
+  line-height: 1.7;
+}
+@media (min-width: 768px) {
+  .about__quote p { font-size: 1.35rem; }
 }
 
 .about__stats {
@@ -1952,8 +1955,9 @@ input, textarea, select { font-family: inherit; }
 .approach__belief p {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 1.08rem;
-  line-height: 1.8;
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 1.75;
   color: var(--clr-text);
 }
 
@@ -1971,7 +1975,7 @@ input, textarea, select { font-family: inherit; }
   .approach__belief {
     padding: 2.25rem 3rem 2.25rem 2.75rem;
   }
-  .approach__belief p { font-size: 1.2rem; }
+  .approach__belief p { font-size: 1.4rem; }
 }
 
 @media (min-width: 1024px) {
