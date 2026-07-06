@@ -1879,7 +1879,7 @@ input, textarea, select { font-family: inherit; }
 /* ---- HISTORIA / ABOUT-STORY (sobre-mi.html, mobile-first) ---- */
 .about-story {
   padding: 3.5rem 1.25rem;
-  background: url('../assets/mariposa_paisaje.png') center center / cover no-repeat;
+  background: url('../assets/mariposa_paisaje.jpg') center center / cover no-repeat;
 }
 /* --- Panel de cristal esmerilado sobre el paisaje --- */
 .about-story__inner {
