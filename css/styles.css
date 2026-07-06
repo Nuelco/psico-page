@@ -356,6 +356,7 @@ input, textarea, select { font-family: inherit; }
 }
 .hero__photo-img {
   width: 100%;
+  height: auto; /* imprescindible: sin esto, el atributo height del img fija la altura */
   aspect-ratio: 4/3;
   border-radius: var(--radius-xl);
   object-fit: cover;
