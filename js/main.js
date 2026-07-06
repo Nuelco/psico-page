@@ -169,10 +169,14 @@ document.querySelectorAll('.faq__question').forEach(btn => {
     item.closest('.faq__group').querySelectorAll('.faq__item').forEach(i => {
       i.classList.remove('open');
       i.querySelector('.faq__question').setAttribute('aria-expanded', 'false');
+      i.querySelector('.faq__answer').style.maxHeight = '';
     });
     if (!isOpen) {
       item.classList.add('open');
       btn.setAttribute('aria-expanded', 'true');
+      /* altura medida del contenido real: la respuesta nunca queda cortada */
+      const answer = item.querySelector('.faq__answer');
+      answer.style.maxHeight = answer.scrollHeight + 'px';
     }
   });
 });
