@@ -1427,7 +1427,7 @@ input, textarea, select { font-family: inherit; }
   max-height: 0;
   transition: max-height 0.35s var(--ease-out);
 }
-.faq__item.open .faq__answer { max-height: 400px; }
+/* la altura de apertura la fija el JS midiendo el contenido real */
 .faq__answer p,
 .faq__answer ul {
   font-size: 0.92rem;
