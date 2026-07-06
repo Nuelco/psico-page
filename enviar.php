@@ -29,7 +29,7 @@ function respond_ok(): void {
     header('Content-Type: application/json');
     echo json_encode(['ok' => true]);
   } else {
-    header('Location: gracias.html', true, 303);
+    header('Location: gracias', true, 303);
   }
   exit;
 }
@@ -40,7 +40,7 @@ function respond_error(int $status, string $msg): void {
     header('Content-Type: application/json');
     echo json_encode(['ok' => false, 'error' => $msg]);
   } else {
-    header('Location: contacto.html?error=1', true, 303);
+    header('Location: contacto?error=1', true, 303);
   }
   exit;
 }

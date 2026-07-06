@@ -63,11 +63,12 @@
 
 /* ---- ACTIVE NAV LINK by current page URL ---- */
 (function initActiveNav() {
-  const page = location.pathname.split('/').pop() || 'index.html';
+  /* URLs limpias: comparamos sin la extensión .html por si el servidor la sirve */
+  const page = location.pathname.split('/').pop().replace(/\.html$/, '');
   document.querySelectorAll('.nav__link').forEach(link => {
     const href = link.getAttribute('href');
     /* no resaltamos "Inicio": debe verse igual que el resto de enlaces */
-    if (href === page && href !== 'index.html') link.classList.add('active');
+    if (href === page && page !== '' && href !== './') link.classList.add('active');
   });
 })();
 
@@ -130,7 +131,7 @@
       });
       if (!res.ok) throw new Error('Respuesta ' + res.status);
       /* envío correcto: redirigimos a la página de agradecimiento */
-      window.location.href = 'gracias.html';
+      window.location.href = 'gracias';
       return;
     } catch (err) {
       console.error('[form] ❌ ERROR al enviar:', err);
@@ -360,7 +361,7 @@ document.head.appendChild(style);
       <div class="cookie-banner__inner">
         <div class="cookie-banner__text">
           <p class="cookie-banner__title">Tu privacidad</p>
-          <p>Usamos cookies técnicas propias (necesarias) y, solo con tu permiso, cookies de terceros para mostrar el mapa de Google Maps. Puedes aceptarlas, rechazarlas o leer más en la <a href="cookies.html">política de cookies</a>.</p>
+          <p>Usamos cookies técnicas propias (necesarias) y, solo con tu permiso, cookies de terceros para mostrar el mapa de Google Maps. Puedes aceptarlas, rechazarlas o leer más en la <a href="cookies">política de cookies</a>.</p>
         </div>
         <div class="cookie-banner__actions">
           <button type="button" class="btn cookie-banner__btn cookie-banner__btn--reject" id="cookieReject">Rechazar</button>
